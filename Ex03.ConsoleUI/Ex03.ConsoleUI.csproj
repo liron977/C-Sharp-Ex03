@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1B0C638F-D18F-4B07-8856-15D285C61634}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>C21_Ex03_LironKotev_318598380_ChenPakman_208711978</RootNamespace>
-    <AssemblyName>C21 Ex03 LironKotev 318598380 ChenPakman 208711978</AssemblyName>
+    <ProjectGuid>{198EFBCB-6CE7-47F6-86DC-9319C0CDD254}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Ex03.ConsoleUI</RootNamespace>
+    <AssemblyName>Ex03.ConsoleUI</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,8 +31,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <ProjectReference Include="..\C21 Ex03 LironKotev 318598380 ChenPakman 208711978\Ex03.GarageLogic.csproj">
+      <Project>{1b0c638f-d18f-4b07-8856-15d285c61634}</Project>
+      <Name>Ex03.GarageLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
