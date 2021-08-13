@@ -89,8 +89,19 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public override string ToString()
+        {
 
+            string vehicelDetails = string.Format(
+                $@"
+The model is: {m_ModelName} 
+The license number is: {r_LicenseNumber}    
+The energy ercentage is: {m_EnergyPercentage}
+{m_ListOfWheels[0].ToString()}
+{m_EngineType.ToString()}");
 
+            return vehicelDetails;
 
+        }
     }
 }

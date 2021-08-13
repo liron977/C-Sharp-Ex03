@@ -66,9 +66,34 @@ namespace Ex03.GarageLogic
                 vehicleToUpdate.Vehicle.inflationWheelsAirToMaximum();
             }
         }
-        public void FillVehicleEnergy(string i_LicenseNumber,)
+        public void IsVehicleCanBeFueled(string i_LicenseNumber)
         {
+            FuelEngine typeEngine = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as FuelEngine;
+            if (typeEngine == null)
+            {
+                throw new ArgumentException("Invalid engine type,this vehicle can`t be fueled");
+            }
+        }
+        public void VehicleRefueling(string i_LicenseNumber, FuelEngine.eFuelType i_FuelType,float i_AmountOfFuleToAdd)
+        {
+            FuelEngine vehicleToRefuel = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as FuelEngine;
+            vehicleToRefuel.RefuelingAction(i_AmountOfFuleToAdd, i_FuelType);
 
+        }
+        public void VehicleCharging(string i_LicenseNumber, float i_MinutesToCharge)
+        {
+            ElecticityEngine vehicleToCharge = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as ElecticityEngine;
+            vehicleToCharge.chargingAction(i_MinutesToCharge/60);
+
+        }
+
+        public void IsVehicleCanBeCharged(string i_LicenseNumber)
+        {
+            ElecticityEngine typeEngine = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as ElecticityEngine;
+            if (typeEngine == null)
+            {
+                throw new ArgumentException("Invalid engine type,this vehicle can`t be charged");
+            }
         }
 
     }

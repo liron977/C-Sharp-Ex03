@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class FuelEngine :Engine
+   public class FuelEngine :Engine
     {
     
         public enum eFuelType
@@ -36,7 +36,7 @@ namespace Ex03.GarageLogic
                 m_FuelType = value;
             }
         }
-        public override void EnergyFillingAction(float i_FuelToAdd, eFuelType i_FuelType)
+        public void RefuelingAction(float i_FuelToAdd, eFuelType i_FuelType)
         {
             float newFuelAmount = i_FuelToAdd + base.m_CurrentEnginePower;
             if (i_FuelType!=m_FuelType)

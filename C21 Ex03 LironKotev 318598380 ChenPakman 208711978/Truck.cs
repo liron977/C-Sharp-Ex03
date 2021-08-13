@@ -22,6 +22,15 @@ namespace Ex03.GarageLogic
             m_IsCarrierDangerousMaterials = i_IsCarrierDangerousMaterials;
             m_MaxCarryingAmount = i_MaxCarryingAmount;
         }
+        public override string ToString()
+        {
+            string truckDetails=string.Format($@"{base.ToString()} 
+The Truck information:
+Is truck carriers dangerous materials ?: {m_IsCarrierDangerousMaterials};
+The max carrying amount is : {m_MaxCarryingAmount}
+");
+            return truckDetails;
+        }
 
     }
 }

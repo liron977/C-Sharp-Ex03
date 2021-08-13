@@ -29,6 +29,15 @@ namespace Ex03.GarageLogic
             m_EngineCapacity = i_EngineCapacity;
             m_LicenseType = i_LicenseType;
         }
+        public override string ToString()
+        {
+            string MotorcycleDetails= string.Format($@"{base.ToString()} 
+The motorcycle information:
+The license type: {m_LicenseType};
+The engine Capacity: {m_EngineCapacity}
+");
+            return MotorcycleDetails;
+        }
 
     }
 }

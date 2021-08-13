@@ -15,8 +15,6 @@ namespace Ex03.GarageLogic
             m_CurrentEnginePower = i_CurrentEnginePower;
             m_MaxEnginePower=i_MaxEnginePower;
         }
-
-        public abstract void EnergyFillingAction(float i_AmountOfEnergyToFill);
     
         public float CurrentEnginePower
         {
