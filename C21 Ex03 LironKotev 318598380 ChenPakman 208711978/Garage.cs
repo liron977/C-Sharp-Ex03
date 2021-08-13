@@ -55,7 +55,20 @@ namespace Ex03.GarageLogic
         }
         public void inflationAirToMaximum(string i_LicenseNumber)
         {
-            r_VehiclesInGarage[i_LicenseNumber].Vehicle.inflationWheelsAirToMaximum();
+            VehicleDetails vehicleToUpdate;
+
+            if (!r_VehiclesInGarage.TryGetValue(i_LicenseNumber, out vehicleToUpdate))
+            {
+                throw new FormatException("Can't find vehicle. Please insert a valid license plate.");
+            }
+            else
+            {
+                vehicleToUpdate.Vehicle.inflationWheelsAirToMaximum();
+            }
+        }
+        public void FillVehicleEnergy(string i_LicenseNumber,)
+        {
+
         }
 
     }

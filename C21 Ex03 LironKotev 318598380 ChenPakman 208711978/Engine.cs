@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-   public class Engine
+   public abstract class Engine
     {
         protected float m_CurrentEnginePower;
         protected float m_MaxEnginePower;
@@ -16,6 +16,8 @@ namespace Ex03.GarageLogic
             m_MaxEnginePower=i_MaxEnginePower;
         }
 
+        public abstract void EnergyFillingAction(float i_AmountOfEnergyToFill);
+    
         public float CurrentEnginePower
         {
             get
