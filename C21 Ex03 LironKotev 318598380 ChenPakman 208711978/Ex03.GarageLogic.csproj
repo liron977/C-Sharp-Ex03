@@ -39,6 +39,7 @@
     <Compile Include="ElecticityEngine.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="FuelEngine.cs" />
+    <Compile Include="Garage.cs" />
     <Compile Include="Motorcycle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Truck.cs" />

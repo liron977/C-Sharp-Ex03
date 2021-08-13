@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-   public class VehicleDetails
+   public class  VehicleDetails
     {
         public enum eVehicleStatus
         {
@@ -16,7 +16,7 @@ namespace Ex03.GarageLogic
         private Vehicle m_Vehicle;
         private string m_OwnerName;
         private string m_OwnerPhoneNumber;
-        private eVehicleStatus m_VehicleStatus;
+        public eVehicleStatus m_VehicleStatus;
 
         public VehicleDetails(Vehicle i_Vehicle,string i_OwnerName, string i_OwnerPhoneNumber
        ,eVehicleStatus i_VehicleStatus)
