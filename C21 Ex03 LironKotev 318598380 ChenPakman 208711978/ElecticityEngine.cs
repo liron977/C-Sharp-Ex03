@@ -14,5 +14,20 @@ namespace Ex03.GarageLogic
         {
          
         }
+
+        public void chargingAction(float i_BatteryhoursToCharge)
+        {
+            float newBatteryHoursAmount = i_BatteryhoursToCharge + base.m_CurrentEnginePower;
+                if (newBatteryHoursAmount > base.m_MaxEnginePower)
+                {
+                    //throw
+                }
+                else
+                {
+                    base.CurrentEnginePower = newBatteryHoursAmount;
+                }
+            }
+        }
+
     }
 }

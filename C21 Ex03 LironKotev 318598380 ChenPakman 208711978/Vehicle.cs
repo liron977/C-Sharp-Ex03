@@ -5,12 +5,13 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    class Vehicle
+   public class Vehicle
     {
-        private string m_ModelName;
-        private string m_LicenseNumber;
-        private float m_EnergyPercentage;
+        protected string m_ModelName;
+        protected string m_LicenseNumber;
+        protected float m_EnergyPercentage;
         protected List<Wheel> m_ListOfWheels;
+        protected Engine m_EngineType;
 
         public Vehicle(string i_ModelName, string i_LicenseNumber,float i_EnergyPercentage, List<Wheel> i_ListOfWheels)
         {
