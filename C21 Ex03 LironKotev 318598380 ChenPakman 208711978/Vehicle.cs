@@ -7,11 +7,18 @@ namespace Ex03.GarageLogic
 {
    public abstract class Vehicle
     {
+        public enum eNumOfWheels
+        {
+            Motorcycle = 2,
+            Car = 4,
+            Truck = 16
+        }
         protected string m_ModelName;
         protected readonly string r_LicenseNumber;
         protected float m_EnergyPercentage;
         protected List<Wheel> m_ListOfWheels;
-        protected Engine m_EngineType;
+        protected eNumOfWheels m_NumOfWheels;
+        public Engine m_EngineType;
 
         public Vehicle(string i_ModelName, string i_LicenseNumber,float i_EnergyPercentage, List<Wheel> i_ListOfWheels)
         {
@@ -41,6 +48,18 @@ namespace Ex03.GarageLogic
             set
             {
                 m_ModelName = value;
+            }
+        }
+
+        public eNumOfWheels NumOfWheels
+        {
+            get
+            {
+                return m_NumOfWheels;
+            }
+            set
+            {
+                m_NumOfWheels = value;
             }
         }
 
@@ -103,5 +122,12 @@ The energy ercentage is: {m_EnergyPercentage}
             return vehicelDetails;
 
         }
+
+        public static void GetListOfDataMembers(ref List<string> io_DataMemberList)
+        {
+            io_DataMemberList.Add("Module Name");
+            io_DataMemberList.Add("Current energy in vehicle");
+        }
+
     }
 }

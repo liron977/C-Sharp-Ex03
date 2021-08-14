@@ -38,5 +38,9 @@ namespace Ex03.GarageLogic
                 m_MaxEnginePower = value;
             }
         }
+        public static void GetListOfDataMembers(ref List<string> io_DataMemberList)
+        {
+            io_DataMemberList.Add("Current engine power");
+        }
     }
 }

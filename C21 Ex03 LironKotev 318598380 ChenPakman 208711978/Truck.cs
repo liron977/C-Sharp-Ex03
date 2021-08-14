@@ -32,5 +32,13 @@ The max carrying amount is : {m_MaxCarryingAmount}
             return truckDetails;
         }
 
+        public static void GetListOfDataMembers(ref List<string> io_DataMemberList)
+        {
+            Vehicle.GetListOfDataMembers(ref io_DataMemberList);
+            io_DataMemberList.Add("Is truck carrier dangerous materials");
+            io_DataMemberList.Add("Number of doors between 2 to 5");
+            
+        }
+
     }
 }

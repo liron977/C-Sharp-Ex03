@@ -38,6 +38,13 @@ The engine Capacity: {m_EngineCapacity}
 ");
             return MotorcycleDetails;
         }
+        public static void GetListOfDataMembers(ref List<string> io_DataMemberList)
+        {
+            Vehicle.GetListOfDataMembers(ref io_DataMemberList);
+           
+           
+
+        }
 
     }
 }

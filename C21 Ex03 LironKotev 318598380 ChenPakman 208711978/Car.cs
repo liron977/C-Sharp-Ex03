@@ -66,6 +66,18 @@ The number of the doors is {m_NumberOfDoors}
 ");
             return CarDetails;
         }
+        public static void GetListOfDataMembers(ref List<string> io_DataMemberList)
+        {
+            Vehicle.GetListOfDataMembers(ref io_DataMemberList);
+            io_DataMemberList.Add("Car color : 1 = Red, 2 = Silver, 3 = White, 4 = Black");
+            io_DataMemberList.Add("Number of doors between 2 to 5");
+            io_DataMemberList.Add("Wheels manufacturer name");
+            for (int i = 1; i <= (int)eNumOfWheels.Car; ++i)
+            {
+                io_DataMemberList.Add("Current air pressure of wheel" + i + ":");
+            }
+        }
+
 
     }
 }
