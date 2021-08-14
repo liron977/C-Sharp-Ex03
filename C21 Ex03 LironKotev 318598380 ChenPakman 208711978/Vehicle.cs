@@ -22,9 +22,16 @@ namespace Ex03.GarageLogic
 
         public Vehicle(string i_ModelName, string i_LicenseNumber,float i_EnergyPercentage, List<Wheel> i_ListOfWheels)
         {
+            List<Wheel> listOfWheels;
             m_ModelName = i_ModelName;
             r_LicenseNumber = i_LicenseNumber;
                 m_EnergyPercentage = i_EnergyPercentage;
+            for(int i = 0; i < (int)m_NumOfWheels; i++)
+            {
+                Wheel wheel=new Wheel()
+                listOfWheels.Add()
+
+            }
                 m_ListOfWheels = i_ListOfWheels;
         }
         public void inflationWheelsAirToMaximum()

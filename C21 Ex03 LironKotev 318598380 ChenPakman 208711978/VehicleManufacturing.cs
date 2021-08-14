@@ -16,22 +16,25 @@ namespace Ex03.GarageLogic
             Truck
 
         }
-        /*public void CreateVehicle(int i_VehicleToCreate,string i_LicenseNumber,string i_VehicleModelName,)
+        public void CreateVehicle(float[] currentAirPressure, List<string> i_VehicleInformation, eVehicleType i_TypeOfVehicle, string i_LicenseNumber)
         {
             Vehicle vehicleToReturn;
-            switch (i_VehicleToCreate)
+            float energyPersantage;
+            switch (i_TypeOfVehicle)
             {
 
-                case 1:
+                case eVehicleType.GasMototorcycle:
                     {
-                        vehicleToReturn =new Motorcycle(i_VehicleModelName,i_LicenseNumber,)
+                        energyPersantage = float.Parse(i_VehicleInformation[1]);
+                        vehicleToReturn = new Motorcycle((string)i_VehicleInformation[0], i_LicenseNumber, energyPersantage,,)
+                            break;
                     }
                    
 
 
 
 
-            }*/
+            }
         public static List<string> ConvertUserChoiceToTypeOfVehicle(eVehicleType i_UserChoiceForVehicle)
         {
             List<string> vehicleDataMembers = new List<string>();

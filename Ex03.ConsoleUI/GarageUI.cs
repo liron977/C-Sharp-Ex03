@@ -59,11 +59,70 @@ namespace Ex03.ConsoleUI
             userVehicleChoice = Console.ReadLine();
             int.TryParse(userVehicleChoice, out userVehicleChoiceNumber);
             messagesForTheUserList = VehicleManufacturing.ConvertUserChoiceToTypeOfVehicle((VehicleManufacturing.eVehicleType)userVehicleChoiceNumber);
-
+            userInputList = GetUserInputList(messagesForTheUserList);
 
         }
-        
-        private void printVehicleOptionsMenu()
+
+        private static int getUserChoiceFromEnumValues(Type i_Enum)
+        {
+            Array enumValues = Enum.GetValues(i_Enum);
+            int numOfEnumValues = enumValues.Length;
+            int indexOfEnumValue = 0;
+            bool isNumber, isValidEnum = false;
+            string textualIndexOfEnumValue;
+
+            while (!isValidEnum)
+            {
+                int currentValueIndex = 1;
+               
+                    Console.WriteLine("Choose one of the following: ");
+                    foreach (object enumValue in enumValues)
+                    {
+                        Console.WriteLine(string.Format("{0}- {1}", currentValueIndex, enumValue));
+                        currentValueIndex++;
+                    }
+                
+
+                textualIndexOfEnumValue = Console.ReadLine();
+                isNumber = int.TryParse(textualIndexOfEnumValue, out indexOfEnumValue);
+                if (isNumber && indexOfEnumValue >= 1 && indexOfEnumValue <= numOfEnumValues)
+                {
+                    isValidEnum = true;
+                }
+                else
+                {
+                    Console.WriteLine("Wrong input, please try again");
+                }
+            }
+
+            return indexOfEnumValue;
+        }
+        private void setVehicleDetails(out VehicleDetails o_VehicleInformation,Vehicle i_Vehicle)
+        {
+            string ownerName;
+            string ownerPhoneNumber;
+            Console.WriteLine("Please enter the owners name");
+            ownerName = Console.ReadLine();
+            Console.WriteLine("Please enter the owners phone number");
+            ownerPhoneNumber = Console.ReadLine();
+
+            o_VehicleInformation = new VehicleDetails(i_Vehicle, ownerName, ownerPhoneNumber, (VehicleDetails.eVehicleStatus)1);
+
+        }
+        private List<string> GetUserInputList(List<string> messagesForTheUserList)
+        {
+            List<string> userInputList = new List<string>();
+
+            Console.Clear();
+            foreach (string userInput in userInputList)
+            {
+                Console.WriteLine("Please enter " + userInput);
+                userInputList.Add(Console.ReadLine());
+            }
+
+            return userInputList;
+        }
+            private void printVehicleOptionsMenu()
         {
             string menuOptionsMessage = string.Format(@"1:Gas mototorcycle.
             2: Electric mototorcycle.
