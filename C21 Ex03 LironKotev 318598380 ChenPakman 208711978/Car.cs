@@ -28,11 +28,10 @@ namespace Ex03.GarageLogic
           string i_LicenseNumber,
           float i_EnergyPercentage,
           List<Wheel> i_Wheels,
-         eCarColor i_CarColor,
           eNumberOfDoors i_NumberOfDoors)
          : base(i_CarModel, i_LicenseNumber, i_EnergyPercentage, i_Wheels)
         {
-            m_CarColor = i_CarColor;
+         
             m_NumberOfDoors = i_NumberOfDoors;
         }
         public eCarColor CarColor
