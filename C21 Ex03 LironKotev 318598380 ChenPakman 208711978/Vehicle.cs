@@ -20,7 +20,7 @@ namespace Ex03.GarageLogic
         protected eNumOfWheels m_NumOfWheels;
         public Engine m_EngineType;
 
-        public Vehicle(string i_ModelName, string i_LicenseNumber,float i_EnergyPercentage, List<Wheel> i_ListOfWheels)
+        /*public Vehicle(string i_ModelName, string i_LicenseNumber,float i_EnergyPercentage, List<Wheel> i_ListOfWheels)
         {
             List<Wheel> listOfWheels;
             m_ModelName = i_ModelName;
@@ -33,7 +33,7 @@ namespace Ex03.GarageLogic
 
             }
                 m_ListOfWheels = i_ListOfWheels;
-        }
+        }*/
         public void inflationWheelsAirToMaximum()
         {
             float airLeftToFill = 0;

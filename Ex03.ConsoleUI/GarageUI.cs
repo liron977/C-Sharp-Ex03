@@ -51,16 +51,26 @@ namespace Ex03.ConsoleUI
         }
         private void insertVehicleToGarage()
         {
-            List<string> messagesForTheUserList;
-            List<string> userInputList;
+           /* List<string> messagesForTheUserList;
+            List<string> userInputList;*/
+            int engineType, vehicleType;
             string userVehicleChoice;
             int userVehicleChoiceNumber;
             printVehicleOptionsMenu();
             userVehicleChoice = Console.ReadLine();
             int.TryParse(userVehicleChoice, out userVehicleChoiceNumber);
-            messagesForTheUserList = VehicleManufacturing.ConvertUserChoiceToTypeOfVehicle((VehicleManufacturing.eVehicleType)userVehicleChoiceNumber);
-            userInputList = GetUserInputList(messagesForTheUserList);
-
+            /*messagesForTheUserList = VehicleManufacturing.ConvertUserChoiceToTypeOfVehicle((VehicleManufacturing.eVehicleType)userVehicleChoiceNumber);
+            userInputList = GetUserInputList(messagesForTheUserList);*/
+            
+          vehicleType = getUserChoiceFromEnumValues(typeof(VehicleManufacturing.eVehicleType));
+            if (VehicleManufacturing.IsEnergyOptionRelevant((VehicleManufacturing.eVehicleType)vehicleType))
+            {
+                engineType = getUserChoiceFromEnumValues(typeof(VehicleManufacturing.eEngineType));
+            }
+            else
+            {
+                engineType = (int)VehicleManufacturing.eEngineType.Gas;
+            }
         }
 
         private static int getUserChoiceFromEnumValues(Type i_Enum)

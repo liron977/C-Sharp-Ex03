@@ -7,16 +7,34 @@ namespace Ex03.GarageLogic
 {
    public abstract class VehicleManufacturing
     {
-        public  enum eVehicleType
+        /* public  enum eVehicleType
+         {
+             GasMototorcycle=1,
+             ElectricMotorcycle,
+             GasCar,
+            ElectricCar,
+             Truck
+
+         }*/
+        public enum eVehicleType
         {
-            GasMototorcycle=1,
-            ElectricMotorcycle,
-            GasCar,
-           ElectricCar,
+            Mototorcycle = 1,
+            Car,
             Truck
 
         }
-        public void CreateVehicle(float[] currentAirPressure, List<string> i_VehicleInformation, eVehicleType i_TypeOfVehicle, string i_LicenseNumber)
+        public enum eEngineType
+        {
+            Gas = 1,
+            Electricity
+
+        }
+        public static bool IsEnergyOptionRelevant(eVehicleType vehicleType)
+        {
+
+            return vehicleType != eVehicleType.Truck;
+        }
+        /*public void CreateVehicle(float[] currentAirPressure, List<string> i_VehicleInformation, eVehicleType i_TypeOfVehicle, string i_LicenseNumber)
         {
             Vehicle vehicleToReturn;
             float energyPersantage;
@@ -29,13 +47,14 @@ namespace Ex03.GarageLogic
                         vehicleToReturn = new Motorcycle((string)i_VehicleInformation[0], i_LicenseNumber, energyPersantage,,)
                             break;
                     }
-                   
+
 
 
 
 
             }
-        public static List<string> ConvertUserChoiceToTypeOfVehicle(eVehicleType i_UserChoiceForVehicle)
+        }*/
+       /* public static List<string> ConvertUserChoiceToTypeOfVehicle(eVehicleType i_UserChoiceForVehicle)
         {
             List<string> vehicleDataMembers = new List<string>();
 
@@ -62,7 +81,7 @@ namespace Ex03.GarageLogic
             Engine.GetListOfDataMembers(ref vehicleDataMembers);
             return vehicleDataMembers;
         }
-
-    }
+*/
+    
     }
 }
