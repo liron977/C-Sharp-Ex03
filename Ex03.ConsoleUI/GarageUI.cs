@@ -7,38 +7,38 @@ namespace Ex03.ConsoleUI
 {
     public class GarageUI
     {
-        public const int k_ExitFromMenu = 8;
+       // public const int k_ExitFromMenu = 8;
         public const int k_FirstOptionInMenu = 1;
 
         public enum eMenuChoice
         {
-            One = 1,
-            Two,
-            Three,
-            Four,
-            Five,
-            Six,
-            Seven,
-            Eight
+            InsertVehicleToTheGarage = 1,
+            PresentVehicleLicenseNumber,
+            ChangeVehicleStatus,
+            PumbAirWheelsToMax,
+            RefuleVehicle,
+            ChargeVehicle,
+            PresentInformationOfvehicle,
+            Exit
         }
 
         public static void StartMenu()
         {
-            string userInputOfChoice;
-            int choiceOfUser;
-            Garage garage = new Garage();
+            string userMenuChoice;
+            int userMenuChoiceNumber;
             bool continueShowingMenu = true;
+            Garage garage = new Garage();
 
             while (continueShowingMenu == true)
             {
                 try
                 {
                     PrintMenu();
-                    userInputOfChoice = Console.ReadLine();
-                    bool isParsingWorked = int.TryParse(userInputOfChoice, out choiceOfUser);
-                    CheckUserChoice(choiceOfUser, isParsingWorked);
+                    userMenuChoice = Console.ReadLine();
+                    bool isParsingWorked = int.TryParse(userMenuChoice, out userMenuChoiceNumber);
+                    CheckUserChoice(userMenuChoiceNumber, isParsingWorked);
 
-                    if (choiceOfUser == k_ExitFromMenu)
+                    if (userMenuChoiceNumber == (int)eMenuChoice.Exit)
                     {
                         PrintExit();
                         continueShowingMenu = false;
@@ -46,10 +46,9 @@ namespace Ex03.ConsoleUI
 
                     else
                     {
-                        DoUserChoice(garage, choiceOfUser);
+                        HandleUserChoice(garage, userMenuChoiceNumber);
                     }
 
-                    // $G$ CSS-027 (-1) Unnecessary blank lines.
                 }
 
                 catch (ArgumentException ex)
@@ -61,87 +60,85 @@ namespace Ex03.ConsoleUI
 
         }
 
-        public static void CheckUserChoice(int i_ChoiceOfUser, bool i_ParsingWorked)
+        public static void CheckUserChoice(int i_UserChoice, bool i_IsValidChoice)
         {
-            if (i_ChoiceOfUser < k_FirstOptionInMenu || i_ChoiceOfUser > k_ExitFromMenu || i_ParsingWorked == false)
+            if (i_UserChoice < (int)eMenuChoice.InsertVehicleToTheGarage || i_UserChoice > (int)eMenuChoice.Exit || i_IsValidChoice == false)
             {
-                throw new FormatException("Invalid option please try again");
+                throw new FormatException("Invalid option! please try again");
             }
         }
 
         public static void PrintMenu()
         {
-            PrintLine();
+            Console.WriteLine(Environment.NewLine);
             string messageMenu = String.Format(
-                @"Hello, welcome to our garage. 
-Thank you for choosing us for your car. 
-We promise you it is the best for you!
-We are going to show you our options, please make a choice: 
+                @"Hello, welcome to Liron and Chen garage! 
+Please make a choice: 
 
-1 - Add your vehicle to the garage.
-2 - Show all license plates of all vehicles in the garage.
-3 - Change status of a specific vehicle in the garage.
-4 - Inflate tires of specific vehicle in the garage.
-5 - Add gas to a vehicle powered by fuel.
-6 - Charge a vehicle powered by electricity.
-7 - Show all details of a specific vehicle.
-8 - Exit from the menu.
+1 - Insert vehicle to the garage.
+2 - Present all license numbers of all vehicles in the garage.
+3 - Change status of a vehicle in the garage.
+4 - Inflate tires of vehicle in the garage.
+5 - Refuel a vehicle.
+6 - Charge a vehicle.
+7 - Present all the details of a vehicle.
+8 - Exit.
 ");
             Console.WriteLine(messageMenu);
         }
 
         public static void PrintExit()
         {
-            Console.WriteLine("Thank you for using our garage system. We hope you had a great experience with us.");
+            Console.WriteLine("Thank you! There is no warranty for the repair. Hope you have another malfunction in the vehicle and we will see you again!");
         }
-
-        public static void DoUserChoice(Garage i_Garage, int i_Choice)
+        
+        public static void HandleUserChoice(Garage i_Garage, int i_UserChoice)
         {
-            switch ((eMenuChoice)i_Choice)
+            switch ((eMenuChoice)i_UserChoice)
             {
-                case eMenuChoice.One:
-                    EnterVehicleToGarage(i_Garage);
+                case eMenuChoice.InsertVehicleToTheGarage:
+                    InsertVehicleToGarage(i_Garage);
                     break;
-                case eMenuChoice.Two:
+                case eMenuChoice.PresentVehicleLicenseNumber:
                     ShowAllLicenseNumbers(i_Garage);
                     break;
-                case eMenuChoice.Three:
+                case eMenuChoice.ChangeVehicleStatus:
                     ChangeVehicleStatus(i_Garage);
                     break;
-                case eMenuChoice.Four:
+                case eMenuChoice.PumbAirWheelsToMax:
                     AddAirToWheels(i_Garage);
                     break;
-                case eMenuChoice.Five:
+                case eMenuChoice.RefuleVehicle:
                     AddGasToVehicle(i_Garage);
                     break;
-                case eMenuChoice.Six:
+                case eMenuChoice.ChargeVehicle:
                     AddElectricityToCar(i_Garage);
                     break;
-                case eMenuChoice.Seven:
+                case eMenuChoice.PresentInformationOfvehicle:
                     PrintCarByLicenseNumber(i_Garage);
                     break;
             }
         }
 
-        public static void EnterVehicleToGarage(Garage i_Garage)
+        public static void InsertVehicleToGarage(Garage i_Garage)
         {
             bool askAgain = true;
             while (askAgain == true)
             {
                 try
                 {
-                    Console.WriteLine(@"Please Enter license number of the car");
+                    Console.WriteLine(@"Please enter the vehicle license number.");
                     string licenseNumber = Console.ReadLine();
                     CheckValidityLicenseNumber(licenseNumber);
 
                     if (i_Garage.IsVehicleExistByLicense(licenseNumber) == true)
                     {
                         i_Garage.ChangeStatusOfVehicle(licenseNumber, VehicleDetails.eVehicleStatus.Repair);
-                        Console.WriteLine("This vehicle exist in our system it has been moved to in repair.");
+                        Console.WriteLine("The vehicle already exists in the garage so it has been moved to repair.");
                     }
                     else
                     {
-                        EnterNewVehicleToGarage(i_Garage, licenseNumber);
+                        InsertNewVehicleToGarage(i_Garage, licenseNumber);
 
                     }
 
@@ -155,17 +152,17 @@ We are going to show you our options, please make a choice:
             }
         }
 
-        public static void EnterNewVehicleToGarage(Garage i_Garage, string i_LicenseNumber)
+        public static void InsertNewVehicleToGarage(Garage i_Garage, string i_LicenseNumber)
         {
             Vehicle vehicle = CreateNewVehicle(i_LicenseNumber);
-            string ownerName = GetOwnerName();
-            string ownerPhone = GetOwnerPhone();
+            string vehicleOwnerName = GetVehicleOwnerName();
+            string vehicleOwnerPhone = GetVehicleOwnerPhone();
 
-            VehicleDetails newVehicleInGarage = VehicleManufacturing.CreateVehicleWithFullInformation(vehicle, ownerName, ownerPhone);
+            VehicleDetails newVehicleInGarage = VehicleManufacturing.CreateVehicleWithFullInformation(vehicle, vehicleOwnerName, vehicleOwnerPhone);
             i_Garage.AddVehicleToGarage(newVehicleInGarage);
         }
 
-        public static string GetOwnerPhone()
+        public static string GetVehicleOwnerPhone()
         {
             bool askAgain = true;
             string ownerPhone = null;
@@ -173,7 +170,7 @@ We are going to show you our options, please make a choice:
 
             while (askAgain == true)
             {
-                Console.WriteLine("Enter owner's phone");
+                Console.WriteLine("Enter the vehicle owner's phone");
                 ownerPhone = Console.ReadLine();
 
                 if (ownerPhone.Length == 10 && long.TryParse(ownerPhone, out phoneInInt))
@@ -190,9 +187,9 @@ We are going to show you our options, please make a choice:
             return ownerPhone;
         }
 
-        public static string GetOwnerName()
+        public static string GetVehicleOwnerName()
         {
-            Console.WriteLine("Enter owner's name");
+            Console.WriteLine("Enter vehicle owner's name");
             string ownerName = Console.ReadLine();
             return ownerName;
         }
@@ -203,15 +200,15 @@ We are going to show you our options, please make a choice:
             Dictionary<string, Type> dynamicParams = new Dictionary<string, Type>();
             Dictionary<string, object> dynamicObject = new Dictionary<string, object>();
 
-            Console.WriteLine(@"Please Enter your type of vehicle");
+            Console.WriteLine(@"Please enter the vehicle type");
             int vehicleType = getEnumFromUser(typeof(VehicleManufacturing.eVehicleType));
             if (vehicleType == 1 || vehicleType == 2)
             {
-                Console.WriteLine(@"Please Enter your energy source:");
+                Console.WriteLine(@"Please enter the vehicle energy source:");
                 energyType = getEnumFromUser(typeof(VehicleManufacturing.eEngineType));
             }
 
-            Console.WriteLine(@"Please Enter your model of vehicle");
+            Console.WriteLine(@"Please enter the model of the vehicle");
             string modelOfVehicle = Console.ReadLine();
 
             float amountOfPowerSource = GetAmountOfPowerSource((VehicleManufacturing.eVehicleType)vehicleType,
@@ -320,7 +317,7 @@ We are going to show you our options, please make a choice:
         }
        */
         // $G$ DSN-002 (-5) The UI should not know Car\Truck\Motorcycle
-        public static float GetMaxAir(VehicleManufacturing.eVehicleType i_VehicleType, VehicleManufacturing.eEngineType i_EnergyType)
+        /*public static float GetMaxAir(VehicleManufacturing.eVehicleType i_VehicleType, VehicleManufacturing.eEngineType i_EnergyType)
         {
             float maxAir = 0;
             switch (i_VehicleType)
@@ -338,7 +335,7 @@ We are going to show you our options, please make a choice:
             }
 
             return maxAir;
-        }
+        }*/
 
         public static void ChangeVehicleStatus(Garage i_Garage)
         {
@@ -357,7 +354,7 @@ We are going to show you our options, please make a choice:
 2 - Fixed
 3 - Paid");
                     string newStatus = Console.ReadLine();
-                    PrintLine();
+                    //PrintLine();
                     CheckValidityStatus(newStatus);
                     if (i_Garage.IsVehicleExistByLicense(licenseNumber))
                     {
@@ -642,10 +639,10 @@ We are going to show you our options, please make a choice:
 
 
         // $G$ CSS-013 (-3) Bad variable name (should be in the form of: i_CamelCase).
-        private static void getIntParameter(string i_CurrentParam, Dictionary<string, object> io_DynamicOjects)
+        private static void getIntParameter(string i_CurrentParam, Dictionary<string, object> i_DynamicOjects)
         {
             Console.WriteLine($@"Please enter {i_CurrentParam} as a positive number");
-            io_DynamicOjects.Add(i_CurrentParam, getIntInput());
+            i_DynamicOjects.Add(i_CurrentParam, getIntInput());
         }
 
 
@@ -721,11 +718,11 @@ We are going to show you our options, please make a choice:
             }
         }
 
-        public static void PrintLine()
+        /*public static void PrintLine()
         {
             Console.WriteLine("===============================================");
             Console.WriteLine(Environment.NewLine);
-        }
+        }*/
 
         private static float getFloatInput()
         {
