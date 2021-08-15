@@ -9,12 +9,13 @@ namespace Ex03.GarageLogic
     {
         private bool m_IsCarrierDangerousMaterials;
         private float m_MaxCarryingAmount;
-
+        
         public Truck(
             string i_TruckModel,
             string i_LicenseNumber,
             float i_EnergyPercentage,
             List <Wheel> i_Wheels,
+             Engine i_EngineType,
            bool i_IsCarrierDangerousMaterials,
             float i_MaxCarryingAmount)
            : base(i_TruckModel, i_LicenseNumber, i_EnergyPercentage, i_Wheels)
@@ -32,12 +33,10 @@ The max carrying amount is : {m_MaxCarryingAmount}
             return truckDetails;
         }
 
-        public static void GetListOfDataMembers(ref List<string> io_DataMemberList)
+        public static void GetDynamicParameter(Dictionary<string, Type> io_DynamicParams)
         {
-            Vehicle.GetListOfDataMembers(ref io_DataMemberList);
-            io_DataMemberList.Add("Is truck carrier dangerous materials");
-            io_DataMemberList.Add("Number of doors between 2 to 5");
-            
+            io_DynamicParams.Add("Dangerous Materials", typeof(bool));
+            io_DynamicParams.Add("Cargo Volume", typeof(float));
         }
 
     }

@@ -20,6 +20,20 @@ namespace Ex03.GarageLogic
         protected eNumOfWheels m_NumOfWheels;
         public Engine m_EngineType;
 
+        public Vehicle(
+            string i_ModelName,
+            string i_LicenseNumber,
+            float i_EnergyPercentage,
+            List<Wheel> i_ListOfWheels,
+            Engine i_EngineType)
+        {
+            m_ModelName = i_ModelName;
+            r_LicenseNumber = i_LicenseNumber;
+            m_EnergyPercentage = i_EnergyPercentage;
+            m_ListOfWheels = i_ListOfWheels;
+            m_EngineType = i_EngineType;
+        }
+
         /*public Vehicle(string i_ModelName, string i_LicenseNumber,float i_EnergyPercentage, List<Wheel> i_ListOfWheels)
         {
             List<Wheel> listOfWheels;
@@ -134,6 +148,10 @@ The energy ercentage is: {m_EnergyPercentage}
         {
             io_DataMemberList.Add("Module Name");
             io_DataMemberList.Add("Current energy in vehicle");
+        }
+        public void UpdatePercent()
+        {
+            m_EnergyPercentage = (m_EngineType.CurrentEnginePower / m_EngineType.MaxEnginePower) * 100;
         }
 
     }

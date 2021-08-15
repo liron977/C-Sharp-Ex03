@@ -22,9 +22,10 @@ namespace Ex03.GarageLogic
             string i_LicenseNumber,
             float i_EnergyPercentage,
             List<Wheel> i_Wheels,
+             Engine i_EnginType,
             eLicenseType i_LicenseType,
             int i_EngineCapacity)
-            : base(i_MotorcycleModel, i_LicenseNumber, i_EnergyPercentage, i_Wheels)
+            : base(i_MotorcycleModel, i_LicenseNumber, i_EnergyPercentage, i_Wheels, i_EnginType)
         {
             m_EngineCapacity = i_EngineCapacity;
             m_LicenseType = i_LicenseType;
@@ -38,12 +39,10 @@ The engine Capacity: {m_EngineCapacity}
 ");
             return MotorcycleDetails;
         }
-        public static void GetListOfDataMembers(ref List<string> io_DataMemberList)
+        public static void GetDynamicParameter(Dictionary<string, Type> io_DynamicParams)
         {
-            Vehicle.GetListOfDataMembers(ref io_DataMemberList);
-           
-           
-
+            io_DynamicParams.Add("License type", typeof(eLicenseType));
+            io_DynamicParams.Add("Engine volume", typeof(int));
         }
 
     }

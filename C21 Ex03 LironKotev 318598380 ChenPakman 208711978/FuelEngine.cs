@@ -36,7 +36,7 @@ namespace Ex03.GarageLogic
                 m_FuelType = value;
             }
         }
-        public void RefuelingAction(float i_FuelToAdd, eFuelType i_FuelType)
+        public void RefuelingAction(eFuelType i_FuelType, float i_FuelToAdd)
         {
             float newFuelAmount = i_FuelToAdd + base.m_CurrentEnginePower;
             if (i_FuelType!=m_FuelType)

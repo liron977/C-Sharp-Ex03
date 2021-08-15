@@ -23,13 +23,16 @@ namespace Ex03.GarageLogic
         }
         protected eCarColor m_CarColor;
         protected eNumberOfDoors m_NumberOfDoors;
+     
         public Car(
           string i_CarModel,
           string i_LicenseNumber,
           float i_EnergyPercentage,
           List<Wheel> i_Wheels,
+          Engine i_EnginType,
+          eCarColor i_carColor,
           eNumberOfDoors i_NumberOfDoors)
-         : base(i_CarModel, i_LicenseNumber, i_EnergyPercentage, i_Wheels)
+         : base(i_CarModel, i_LicenseNumber, i_EnergyPercentage, i_Wheels, i_EnginType)
         {
          
             m_NumberOfDoors = i_NumberOfDoors;
@@ -66,17 +69,12 @@ The number of the doors is {m_NumberOfDoors}
 ");
             return CarDetails;
         }
-        public static void GetListOfDataMembers(ref List<string> io_DataMemberList)
+        public static void GetDynamicParameter(Dictionary<string, Type> io_DynamicParams)
         {
-            Vehicle.GetListOfDataMembers(ref io_DataMemberList);
-            io_DataMemberList.Add("Car color : 1 = Red, 2 = Silver, 3 = White, 4 = Black");
-            io_DataMemberList.Add("Number of doors between 2 to 5");
-            io_DataMemberList.Add("Wheels manufacturer name");
-            for (int i = 1; i <= (int)eNumOfWheels.Car; ++i)
-            {
-                io_DataMemberList.Add("Current air pressure of wheel" + i + ":");
-            }
+            io_DynamicParams.Add("Color", typeof(eCarColor));
+            io_DynamicParams.Add("Number of doors", typeof(eNumberOfDoors));
         }
+
 
 
     }
