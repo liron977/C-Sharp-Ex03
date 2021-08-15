@@ -27,6 +27,13 @@ namespace Ex03.GarageLogic
                 base.CurrentEnginePower = newBatteryHoursAmount;
             }
         }
+        public override string ToString()
+        {
+            string EngineDetails = string.Format($@"
+The Engin Type is: Electricity type
+");
+            return EngineDetails;
+        }
 
     }
 

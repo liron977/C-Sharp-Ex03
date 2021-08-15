@@ -15,8 +15,14 @@ namespace Ex03.GarageLogic
         public Wheel(string i_Manufacturer, float i_CurrentAirPressure, float i_MaximumAirPressureSetByManufacturer)
         {
             m_Manufacturer = i_Manufacturer;
-            m_CurrentAirPressure = i_CurrentAirPressure;
             r_MaximumAirPressureSetByManufacturer = i_MaximumAirPressureSetByManufacturer;
+            if (i_CurrentAirPressure <= r_MaximumAirPressureSetByManufacturer)
+            { m_CurrentAirPressure = i_CurrentAirPressure; }
+            else
+            {
+                throw new FormatException(string.Format("The current air pressure is bigger than The maximum:{0}.", r_MaximumAirPressureSetByManufacturer));
+
+            }
         }
         public void InflationAction(float i_AirPressureToAdd)
         {

@@ -9,7 +9,14 @@ namespace Ex03.GarageLogic
     {
         private bool m_IsCarrierDangerousMaterials;
         private float m_MaxCarryingAmount;
-        
+        public struct Constants
+        {
+            public const int k_NumOfWheels = 16;
+            public const float k_TruckMaxAirPressure = 28.0f;
+            public const FuelEngine.eFuelType k_FuelType = FuelEngine.eFuelType.Soler;
+            public const float k_MaxFuelCapacity = 120f;
+        }
+
         public Truck(
             string i_TruckModel,
             string i_LicenseNumber,
@@ -23,6 +30,12 @@ namespace Ex03.GarageLogic
             m_IsCarrierDangerousMaterials = i_IsCarrierDangerousMaterials;
             m_MaxCarryingAmount = i_MaxCarryingAmount;
         }
+
+        /*public override float GetMaxPower(VehicleManufacturing.eEngineType i_EnergyType)
+        {
+            return Constants.k_MaxFuelCapacity;
+
+        }*/
         public override string ToString()
         {
             string truckDetails=string.Format($@"{base.ToString()} 

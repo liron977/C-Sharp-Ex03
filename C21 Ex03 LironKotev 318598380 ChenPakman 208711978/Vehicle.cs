@@ -33,6 +33,7 @@ namespace Ex03.GarageLogic
             m_ListOfWheels = i_ListOfWheels;
             m_EngineType = i_EngineType;
         }
+        //public abstract float GetMaxPower(VehicleManufacturing.eEngineType i_EnergyType);
 
         /*public Vehicle(string i_ModelName, string i_LicenseNumber,float i_EnergyPercentage, List<Wheel> i_ListOfWheels)
         {
@@ -136,7 +137,7 @@ namespace Ex03.GarageLogic
                 $@"
 The model is: {m_ModelName} 
 The license number is: {r_LicenseNumber}    
-The energy ercentage is: {m_EnergyPercentage}
+The energy amount is: {m_EnergyPercentage} 
 {m_ListOfWheels[0].ToString()}
 {m_EngineType.ToString()}");
 

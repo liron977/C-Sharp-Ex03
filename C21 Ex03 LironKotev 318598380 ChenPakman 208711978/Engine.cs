@@ -12,10 +12,18 @@ namespace Ex03.GarageLogic
 
         public Engine(float i_CurrentEnginePower,float i_MaxEnginePower)
         {
-            m_CurrentEnginePower = i_CurrentEnginePower;
-            m_MaxEnginePower=i_MaxEnginePower;
+            m_MaxEnginePower = i_MaxEnginePower;
+            if (i_CurrentEnginePower <= m_MaxEnginePower)
+            { m_CurrentEnginePower = i_CurrentEnginePower; }
+            else
+            {
+                throw new FormatException(string.Format("The current engine power is bigger than The maximun:{0}.", m_MaxEnginePower));
+            }
+            
         }
-    
+
+        public abstract string ToString();
+
         public float CurrentEnginePower
         {
             get
@@ -42,5 +50,6 @@ namespace Ex03.GarageLogic
         {
             io_DataMemberList.Add("Current engine power");
         }
+
     }
 }

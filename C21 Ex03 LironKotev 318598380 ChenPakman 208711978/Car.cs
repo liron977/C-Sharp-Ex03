@@ -23,7 +23,15 @@ namespace Ex03.GarageLogic
         }
         protected eCarColor m_CarColor;
         protected eNumberOfDoors m_NumberOfDoors;
-     
+
+        public struct Constants
+        {
+            public const int k_NumOfWheels = 4;
+            public const float k_CarMaxAirPressure = 32f;
+            public const FuelEngine.eFuelType k_FuelType = FuelEngine.eFuelType.Octan96;
+            public const float k_MaxBatreryTime = 2.1f;
+            public const float k_MaxFuelCapacity = 60f;
+        }
         public Car(
           string i_CarModel,
           string i_LicenseNumber,
@@ -37,6 +45,18 @@ namespace Ex03.GarageLogic
          
             m_NumberOfDoors = i_NumberOfDoors;
         }
+      /*  public override float GetMaxPower( VehicleManufacturing.eEngineType i_EnergyType)
+        {
+            if (i_EnergyType == VehicleManufacturing.eEngineType.Gas)
+            {
+                return Constants.k_MaxFuelCapacity;
+            }
+            else
+            {
+                return Constants.k_MaxBatreryTime;
+            }
+        }*/
+        
         public eCarColor CarColor
         {
             get

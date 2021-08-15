@@ -51,27 +51,27 @@ namespace Ex03.GarageLogic
                 case eVehicleType.Car:
                     if (i_EnergyType == eEngineType.Gas)
                     {
-                        powerSource = new FuelEngine(FuelEngine.eFuelType.Octan96, i_AmountOfPowerSource, 50f);
+                        powerSource = new FuelEngine(FuelEngine.eFuelType.Octan95, i_AmountOfPowerSource, 45);
                     }
                     else
                     {
-                        powerSource = new ElecticityEngine(1.6f, i_AmountOfPowerSource);
+                        powerSource = new ElecticityEngine(3.2f, i_AmountOfPowerSource);
                     }
 
                     break;
                 case eVehicleType.Motorcycle:
                     if (i_EnergyType == eEngineType.Gas)
                     {
-                        powerSource = new FuelEngine(FuelEngine.eFuelType.Octan95, i_AmountOfPowerSource, 5.5f);
+                        powerSource = new FuelEngine(FuelEngine.eFuelType.Octan98, i_AmountOfPowerSource, 6);
                     }
                     else
                     {
-                        powerSource = new ElecticityEngine(4.8f, i_AmountOfPowerSource);
+                        powerSource = new ElecticityEngine(1.8f, i_AmountOfPowerSource);
                     }
 
                     break;
                 case eVehicleType.Truck:
-                    powerSource = new FuelEngine(FuelEngine.eFuelType.Soler, i_AmountOfPowerSource, 105f);
+                    powerSource = new FuelEngine(FuelEngine.eFuelType.Soler, i_AmountOfPowerSource, 120);
                     break;
             }
 
@@ -91,13 +91,13 @@ namespace Ex03.GarageLogic
             }
             else if (i_VehicleType == eVehicleType.Motorcycle)
             {
-                maxAirPressure = 28;
+                maxAirPressure = 30;
                 amountOfWheels = 2;
             }
             else
             {
-                maxAirPressure = 16;
-                amountOfWheels = 30;
+                maxAirPressure = 26;
+                amountOfWheels = 16;
             }
 
             for (int i = 0; i < amountOfWheels; i++)
@@ -131,7 +131,7 @@ namespace Ex03.GarageLogic
 
         {
             Vehicle vehicleOfOwner = null;
-            float energyPercent = i_Power.CurrentEnginePower / i_Power.MaxEnginePower * 100;
+            float energyPercent = i_Power.CurrentEnginePower;
             switch (i_VehicleType)
             {
                 case eVehicleType.Car:

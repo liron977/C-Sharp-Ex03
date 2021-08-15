@@ -244,17 +244,16 @@ We are going to show you our options, please make a choice:
         public static float GetAmountOfPowerSource(VehicleManufacturing.eVehicleType i_VehicleType, VehicleManufacturing.eEngineType i_EnergyType)
         {
             bool askAgain = true;
-            float maxPower = GetMaxPower(i_VehicleType, i_EnergyType);
+           
             float inputInFloat = 0;
 
-            while (askAgain == true)
-            {
+            
                 Console.WriteLine(@"How much power is your vehicle left? ");
                 string inputFromUser = Console.ReadLine();
 
-                if (float.TryParse(inputFromUser, out inputInFloat))
-                {
-                    if (inputInFloat <= maxPower)
+            float.TryParse(inputFromUser, out inputInFloat);
+                
+                    /*if (inputInFloat <= maxPower)
                     {
                         askAgain = false;
                     }
@@ -263,13 +262,8 @@ We are going to show you our options, please make a choice:
                     {
                         Console.WriteLine("The value you entered is too big please try again");
                     }
-                }
+                }*/
 
-                else
-                {
-                    Console.WriteLine("Wrong input please try again");
-                }
-            }
 
             return inputInFloat;
         }
@@ -277,38 +271,21 @@ We are going to show you our options, please make a choice:
         public static float GetAirPressure(VehicleManufacturing.eVehicleType i_VehicleType, VehicleManufacturing.eEngineType i_EnergyType)
         {
             bool askAgain = true;
-            float maxAir = GetMaxAir(i_VehicleType, i_EnergyType);
+            //float maxAir = GetMaxAir(i_VehicleType, i_EnergyType);
             float inputInFloat = 0;
 
-            while (askAgain == true)
-            {
+           
                 Console.WriteLine("Please enter current air pressure");
                 string inputFromUser = Console.ReadLine();
 
-                if (float.TryParse(inputFromUser, out inputInFloat))
-                {
-                    if (inputInFloat <= maxAir)
-                    {
-                        askAgain = false;
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("The value you entered is too big please try again");
-                    }
-                }
-
-                else
-                {
-                    Console.WriteLine("Wrong input please try again");
-                }
-            }
-
+                float.TryParse(inputFromUser, out inputInFloat);
+              
+              
             return inputInFloat;
         }
 
         // $G$ DSN-002 (-10) The UI should not know Car\Truck\Motorcycle
-        public static float GetMaxPower(VehicleManufacturing.eVehicleType i_VehicleType, VehicleManufacturing.eEngineType i_EnergyType)
+       /* public static float GetMaxPower(VehicleManufacturing.eVehicleType i_VehicleType, VehicleManufacturing.eEngineType i_EnergyType)
         {
             float maxPower = 0;
             switch (i_VehicleType)
@@ -341,7 +318,7 @@ We are going to show you our options, please make a choice:
 
             return maxPower;
         }
-
+       */
         // $G$ DSN-002 (-5) The UI should not know Car\Truck\Motorcycle
         public static float GetMaxAir(VehicleManufacturing.eVehicleType i_VehicleType, VehicleManufacturing.eEngineType i_EnergyType)
         {

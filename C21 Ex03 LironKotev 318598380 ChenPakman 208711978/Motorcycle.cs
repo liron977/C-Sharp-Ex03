@@ -17,6 +17,15 @@ namespace Ex03.GarageLogic
         private eLicenseType m_LicenseType;
         private readonly int m_EngineCapacity;
 
+        public struct Constants
+        {
+            public const int k_NumOfWheels = 2;
+            public const float k_MotorcycleMaxAirPressure = 30.0f;
+            public const FuelEngine.eFuelType k_FuelType = FuelEngine.eFuelType.Octan95;
+            public const float k_MaxBatreryTime = 1.2f;
+            public const float k_MaxFuelCapacity = 7f;
+        }
+
         public Motorcycle(
             string i_MotorcycleModel,
             string i_LicenseNumber,
@@ -30,6 +39,18 @@ namespace Ex03.GarageLogic
             m_EngineCapacity = i_EngineCapacity;
             m_LicenseType = i_LicenseType;
         }
+
+        /*public override float GetMaxPower(VehicleManufacturing.eEngineType i_EnergyType)
+        {
+            if (i_EnergyType == VehicleManufacturing.eEngineType.Gas)
+            {
+                return Constants.k_MaxFuelCapacity;
+            }
+            else
+            {
+                return Constants.k_MaxBatreryTime;
+            }
+        }*/
         public override string ToString()
         {
             string MotorcycleDetails= string.Format($@"{base.ToString()} 

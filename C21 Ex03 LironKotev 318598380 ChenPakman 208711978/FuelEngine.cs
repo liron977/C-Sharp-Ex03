@@ -55,7 +55,13 @@ namespace Ex03.GarageLogic
                 }
             }
         }
-      
+        public override string ToString()
+        {
+            string EngineDetails = string.Format($@"
+The Engin Type is: Fuel type
+");
+            return EngineDetails;
+        }
 
     }
 }
