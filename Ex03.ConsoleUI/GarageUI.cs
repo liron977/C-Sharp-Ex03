@@ -74,7 +74,7 @@ namespace Ex03.ConsoleUI
             PrintLine();
             string messageMenu = String.Format(
                 @"Hello, welcome to our garage. 
-Thank you for choosing 'Mor&Lia' for your car. 
+Thank you for choosing us for your car. 
 We promise you it is the best for you!
 We are going to show you our options, please make a choice: 
 
@@ -562,8 +562,8 @@ We are going to show you our options, please make a choice:
                             @"Please enter the type of gas to add:");
                         int typeOfGas = getEnumFromUser(typeof(FuelEngine.eFuelType));
 
-                        i_Garage.AddGas(licenseNumber, (FuelEngine.eFuelType)typeOfGas, float.Parse(amountOfGas));
-                        Console.WriteLine($@"The vehicle has been fueled till: { i_Garage.VehiclesToFix[licenseNumber].VehicleOfOwner.PowerSource.CurrentAmountOfPower}");
+                        i_Garage.VehicleRefueling(licenseNumber, (FuelEngine.eFuelType)typeOfGas, float.Parse(amountOfGas));
+                        Console.WriteLine($@"The vehicle has been fueled till: { i_Garage.VehiclesInGarage[licenseNumber].Vehicle.EngineType.CurrentEnginePower}");
 
                     }
                     else
@@ -584,11 +584,11 @@ We are going to show you our options, please make a choice:
                     Console.WriteLine(ex.Message);
                     Console.WriteLine("Please try again.");
                 }
-                catch (ValueOutOfRangeException ex)
+                /*catch (ValueOutOfRangeException ex)
                 {
                     Console.WriteLine(ex.Message);
                     Console.WriteLine("Please try again.");
-                }
+                }*/
 
             }
         }
@@ -606,12 +606,12 @@ We are going to show you our options, please make a choice:
 
                     if (i_Garage.IsVehicleExistByLicense(licenseNumber))
                     {
-                        i_Garage.CanCarBeCharged(licenseNumber);
+                        i_Garage.IsVehicleCanBeCharged(licenseNumber);
                         Console.WriteLine("Please enter the amount of electricity to add:");
                         string amountOfElectricity = Console.ReadLine();
 
-                        i_Garage.AddElectricity(licenseNumber, float.Parse(amountOfElectricity));
-                        Console.WriteLine($@"The vehicle has been charged till: { i_Garage.VehiclesToFix[licenseNumber].VehicleOfOwner.PowerSource.CurrentAmountOfPower}");
+                        i_Garage.VehicleCharging(licenseNumber, float.Parse(amountOfElectricity));
+                        Console.WriteLine($@"The vehicle has been charged till: { i_Garage.VehiclesInGarage[licenseNumber].Vehicle.EngineType.CurrentEnginePower}");
 
                     }
                     else
@@ -626,11 +626,11 @@ We are going to show you our options, please make a choice:
                     Console.WriteLine(ex.Message);
                     Console.WriteLine("Please try again.");
                 }
-                catch (ValueOutOfRangeException ex)
+                /*catch (ValueOutOfRangeException ex)
                 {
                     Console.WriteLine(ex.Message);
                     Console.WriteLine("Please try again.");
-                }
+                }*/
                 catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);

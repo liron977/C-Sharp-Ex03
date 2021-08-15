@@ -18,7 +18,7 @@ namespace Ex03.GarageLogic
              Engine i_EngineType,
            bool i_IsCarrierDangerousMaterials,
             float i_MaxCarryingAmount)
-           : base(i_TruckModel, i_LicenseNumber, i_EnergyPercentage, i_Wheels)
+           : base(i_TruckModel, i_LicenseNumber, i_EnergyPercentage, i_Wheels, i_EngineType)
         {
             m_IsCarrierDangerousMaterials = i_IsCarrierDangerousMaterials;
             m_MaxCarryingAmount = i_MaxCarryingAmount;
