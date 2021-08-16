@@ -164,21 +164,17 @@ Please make a choice:
 
         public static string GetVehicleOwnerPhone()
         {
-            bool askAgain = true;
+            bool isValidPhoneNumberInput = false;
             string ownerPhone = null;
-            long phoneInInt;
 
-            while (askAgain == true)
+            while (!isValidPhoneNumberInput)
             {
                 Console.WriteLine("Enter the vehicle owner's phone");
                 ownerPhone = Console.ReadLine();
 
-                if (ownerPhone.Length == 10 && long.TryParse(ownerPhone, out phoneInInt))
-                {
-                    askAgain = false;
-                }
 
-                else
+                isValidPhoneNumberInput = isValidOwnerPhone(ownerPhone);
+                if(!isValidPhoneNumberInput)
                 {
                     Console.WriteLine("Wrong format please try again.");
                 }
@@ -187,61 +183,148 @@ Please make a choice:
             return ownerPhone;
         }
 
+        private static bool isValidOwnerPhone(string i_userPhoneNumberInput)
+        {
+            long phoneInInt;
+            bool isValidOwnerPhone = false;
+
+            if (i_userPhoneNumberInput.Length == 10 && long.TryParse(i_userPhoneNumberInput, out phoneInInt))
+            {
+                isValidOwnerPhone = true;
+            }
+            return isValidOwnerPhone;
+
+        }
+
         public static string GetVehicleOwnerName()
         {
-            Console.WriteLine("Enter vehicle owner's name");
-            string ownerName = Console.ReadLine();
+            bool isValidOwnerNameInput = false;
+            string ownerName=String.Empty;
+
+            while (!isValidOwnerNameInput)
+            {
+                Console.WriteLine("Enter vehicle owner's name");
+                ownerName = Console.ReadLine();
+                isValidOwnerNameInput = isValidOwnerName(ownerName);
+
+                if (!isValidOwnerNameInput)
+                {
+                    Console.WriteLine("Invalid input! Please enter a name that contains only letters and its length is not less than 2.");
+                }
+            }
             return ownerName;
         }
 
+        private static bool isValidOwnerName(string i_userNameInput)
+        {
+            bool isValidOwnerName = true;
+            if (i_userNameInput.Length >= 2)
+            {
+                for (int i = 0; i < i_userNameInput.Length; i++)
+                {
+                    if (char.IsDigit(i_userNameInput[i]))
+                    {
+                        isValidOwnerName = false;
+                    }
+                }
+            }
+            else
+            {
+                isValidOwnerName = false;
+            }
+
+            return isValidOwnerName;
+        }
         public static Vehicle CreateNewVehicle(string i_LicenseNumber)
         {
             int energyType = 1;
+            int vehicleType=0;
+            string modelOfVehicle;
+            float currentAmountOfEnergySource;
+            float currAirPressure;
+            string wheelsManufacturer;
+            List<Wheel> vehicleWheels;
+            Vehicle newVehicle;
             Dictionary<string, Type> dynamicParams = new Dictionary<string, Type>();
             Dictionary<string, object> dynamicObject = new Dictionary<string, object>();
 
-            Console.WriteLine(@"Please enter the vehicle type");
-            int vehicleType = getEnumFromUser(typeof(VehicleManufacturing.eVehicleType));
+            Console.WriteLine("Please enter the vehicle type");
+            vehicleType = getUserEnumInput(typeof(VehicleManufacturing.eVehicleType));
             if (vehicleType == 1 || vehicleType == 2)
             {
-                Console.WriteLine(@"Please enter the vehicle energy source:");
-                energyType = getEnumFromUser(typeof(VehicleManufacturing.eEngineType));
+                Console.WriteLine("Please enter the vehicle energy source:");
+                energyType = getUserEnumInput(typeof(VehicleManufacturing.eEngineType));
             }
 
-            Console.WriteLine(@"Please enter the model of the vehicle");
-            string modelOfVehicle = Console.ReadLine();
-
-            float amountOfPowerSource = GetAmountOfPowerSource((VehicleManufacturing.eVehicleType)vehicleType,
+            Console.WriteLine("Please enter the model of the vehicle");
+            modelOfVehicle = Console.ReadLine();
+            currentAmountOfEnergySource = GetCurrentAmountOfEnergySource((VehicleManufacturing.eVehicleType)vehicleType,
                 (VehicleManufacturing.eEngineType)energyType);
 
-            Engine power = VehicleManufacturing.CreatePowerSource(
+            Engine power = VehicleManufacturing.CreateEnergySource(
                 (VehicleManufacturing.eVehicleType)vehicleType,
                 (VehicleManufacturing.eEngineType)energyType,
-                amountOfPowerSource);
+                currentAmountOfEnergySource);
 
             Console.WriteLine("Please enter the manufacturer of the wheels");
-            string wheelsManufacturer = Console.ReadLine();
+            wheelsManufacturer = Console.ReadLine();
 
-            float currAirPressure = GetAirPressure((VehicleManufacturing.eVehicleType)vehicleType,
+            currAirPressure = GetAirPressure((VehicleManufacturing.eVehicleType)vehicleType,
                 (VehicleManufacturing.eEngineType)energyType);
 
-            List<Wheel> vehicleWheels = VehicleManufacturing.CreateWheels(
+            vehicleWheels = VehicleManufacturing.CreateWheels(
                 (VehicleManufacturing.eVehicleType)vehicleType,
                 wheelsManufacturer,
                 currAirPressure);
 
             VehicleManufacturing.GetRequiredVehicleParameters(vehicleType, dynamicParams);
-
             getDynamicParametersDataFromUser(dynamicParams, dynamicObject);
-            Vehicle newVehicle = VehicleManufacturing.CreateVehicle((VehicleManufacturing.eVehicleType)vehicleType, modelOfVehicle, i_LicenseNumber, power, vehicleWheels, dynamicObject);
+           newVehicle = VehicleManufacturing.CreateVehicle((VehicleManufacturing.eVehicleType)vehicleType, modelOfVehicle, i_LicenseNumber, power, vehicleWheels, dynamicObject);
 
             return newVehicle;
         }
 
-        public static float GetAmountOfPowerSource(VehicleManufacturing.eVehicleType i_VehicleType, VehicleManufacturing.eEngineType i_EnergyType)
+        /*public static Vehicle CreateNewVehicle(string i_LicenseNumber)
         {
-            bool askAgain = true;
-           
+            int energyType = 1;
+            int vehicleType = 0;
+            string modelOfVehicle;
+            float currentAmountOfEnergySource;
+            float currAirPressure;
+            string wheelsManufacturer;
+            List<Wheel> vehicleWheels;
+            Vehicle newVehicle;
+            Engine power;
+            Dictionary<string, Type> dynamicParams = new Dictionary<string, Type>();
+            Dictionary<string, object> dynamicObject = new Dictionary<string, object>();
+
+            Console.WriteLine("Please enter the vehicle type");
+            vehicleType = getUserEnumInput(typeof(VehicleManufacturing.eVehicleType));
+            if (vehicleType == 1 || vehicleType == 2)
+            {
+                Console.WriteLine("Please enter the vehicle energy source:");
+                energyType = getUserEnumInput(typeof(VehicleManufacturing.eEngineType));
+            }
+
+            Console.WriteLine("Please enter the model of the vehicle");
+            modelOfVehicle = Console.ReadLine();
+            currentAmountOfEnergySource = GetCurrentAmountOfEnergySource((VehicleManufacturing.eVehicleType)vehicleType,
+                (VehicleManufacturing.eEngineType)energyType);
+            Console.WriteLine("Please enter the manufacturer of the wheels");
+            wheelsManufacturer = Console.ReadLine();
+
+            currAirPressure = GetAirPressure((VehicleManufacturing.eVehicleType)vehicleType,
+                (VehicleManufacturing.eEngineType)energyType);
+            VehicleManufacturing.CreateNewVehicle((VehicleManufacturing.eVehicleType)vehicleType, (VehicleManufacturing.eEngineType)energyType, currentAmountOfEnergySource, wheelsManufacturer,currAirPressure, dynamicParams,modelOfVehicle,i_LicenseNumber,dynamicObject);
+
+            getDynamicParametersDataFromUser(dynamicParams, dynamicObject);
+            newVehicle = VehicleManufacturing.CreateVehicle((VehicleManufacturing.eVehicleType)vehicleType, modelOfVehicle, i_LicenseNumber,out power, out vehicleWheels, dynamicObject);
+
+            return newVehicle;
+        }*/
+
+        public static float GetCurrentAmountOfEnergySource(VehicleManufacturing.eVehicleType i_VehicleType, VehicleManufacturing.eEngineType i_EnergyType)
+        {
             float inputInFloat = 0;
 
             
@@ -267,75 +350,24 @@ Please make a choice:
 
         public static float GetAirPressure(VehicleManufacturing.eVehicleType i_VehicleType, VehicleManufacturing.eEngineType i_EnergyType)
         {
-            bool askAgain = true;
-            //float maxAir = GetMaxAir(i_VehicleType, i_EnergyType);
-            float inputInFloat = 0;
+            bool isValidAirPressure = false;
+            float inputInFloat=0;
 
-           
+            while (!isValidAirPressure) {
                 Console.WriteLine("Please enter current air pressure");
                 string inputFromUser = Console.ReadLine();
+                if(float.TryParse(inputFromUser, out inputInFloat))
+                {
+                    isValidAirPressure = true;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter only numbers");
+                }
 
-                float.TryParse(inputFromUser, out inputInFloat);
-              
-              
+            }
             return inputInFloat;
         }
-
-        // $G$ DSN-002 (-10) The UI should not know Car\Truck\Motorcycle
-       /* public static float GetMaxPower(VehicleManufacturing.eVehicleType i_VehicleType, VehicleManufacturing.eEngineType i_EnergyType)
-        {
-            float maxPower = 0;
-            switch (i_VehicleType)
-            {
-                case VehicleManufacturing.eVehicleType.Car:
-                    if (i_EnergyType == VehicleManufacturing.eEngineType.Gas)
-                    {
-                        maxPower = 50f;
-                    }
-                    else
-                    {
-                        maxPower = 1.6f;
-                    }
-                    break;
-                case VehicleManufacturing.eVehicleType.Motorcycle:
-                    if (i_EnergyType == VehicleManufacturing.eEngineType.Gas)
-                    {
-                        maxPower = 5.5f;
-                    }
-                    else
-                    {
-                        maxPower = 4.8f;
-                    }
-
-                    break;
-                case VehicleManufacturing.eVehicleType.Truck:
-                    maxPower = 105f;
-                    break;
-            }
-
-            return maxPower;
-        }
-       */
-        // $G$ DSN-002 (-5) The UI should not know Car\Truck\Motorcycle
-        /*public static float GetMaxAir(VehicleManufacturing.eVehicleType i_VehicleType, VehicleManufacturing.eEngineType i_EnergyType)
-        {
-            float maxAir = 0;
-            switch (i_VehicleType)
-            {
-                case VehicleManufacturing.eVehicleType.Car:
-                    maxAir = 32f;
-                    break;
-                case VehicleManufacturing.eVehicleType.Motorcycle:
-                    maxAir = 28f;
-
-                    break;
-                case VehicleManufacturing.eVehicleType.Truck:
-                    maxAir = 30f;
-                    break;
-            }
-
-            return maxAir;
-        }*/
 
         public static void ChangeVehicleStatus(Garage i_Garage)
         {
@@ -452,7 +484,7 @@ Please make a choice:
             int howManyCars = 0;
             Console.WriteLine(
                 @"Please enter the filter for show license numbers:");
-            int filterType = getEnumFromUser(typeof(VehicleDetails.eVehicleStatus));
+            int filterType = getUserEnumInput(typeof(VehicleDetails.eVehicleStatus));
             Console.WriteLine();
 
             foreach (KeyValuePair<string, VehicleDetails> entry in i_Garage.VehiclesInGarage)
@@ -534,7 +566,7 @@ Please make a choice:
                         string amountOfGas = Console.ReadLine();
                         Console.WriteLine(
                             @"Please enter the type of gas to add:");
-                        int typeOfGas = getEnumFromUser(typeof(FuelEngine.eFuelType));
+                        int typeOfGas = getUserEnumInput(typeof(FuelEngine.eFuelType));
 
                         i_Garage.VehicleRefueling(licenseNumber, (FuelEngine.eFuelType)typeOfGas, float.Parse(amountOfGas));
                         Console.WriteLine($@"The vehicle has been fueled till: { i_Garage.VehiclesInGarage[licenseNumber].Vehicle.EngineType.CurrentEnginePower}");
@@ -566,7 +598,6 @@ Please make a choice:
 
             }
         }
-
         public static void AddElectricityToCar(Garage i_Garage)
         {
             bool askAgain = false;
@@ -652,34 +683,35 @@ Please make a choice:
             io_DynamicObjects.Add(i_CurrentParam, getFloatInput());
         }
 
-        private static int getEnumFromUser(Type i_Enum)
+        private static int getUserEnumInput(Type i_Enum)
         {
-            string indexOfEnum;
             Array valuesOfEnum = Enum.GetValues(i_Enum);
-            int amountOfEnum = valuesOfEnum.Length;
-            bool isParseNumber, isValidEnum = false;
+            string indexOfEnum;
+            int numberOfEnum = valuesOfEnum.Length;
+            bool isParseNumber;
+            bool isValidInput = false;
             int indexOfEnumValue = 0;
+            int currentValueIndex = 1;
 
-
-            while (isValidEnum == false)
+            while (!isValidInput)
             {
-                int currentValueIndex = 1;
-                Console.WriteLine("Choose one of the following: ");
+                currentValueIndex = 1;
+                Console.WriteLine("Choose an option from the menu below: ");
                 foreach (object enumValue in valuesOfEnum)
                 {
-                    Console.WriteLine($@"{currentValueIndex}-{enumValue}");
+                    Console.WriteLine(string.Format("({0})-{1}", currentValueIndex, enumValue));
                     currentValueIndex++;
                 }
 
                 indexOfEnum = Console.ReadLine();
                 isParseNumber = int.TryParse(indexOfEnum, out indexOfEnumValue);
-                if (isParseNumber && indexOfEnumValue >= 1 && indexOfEnumValue <= amountOfEnum)
+                if (indexOfEnumValue <= numberOfEnum && isParseNumber && indexOfEnumValue >= 1)
                 {
-                    isValidEnum = true;
+                    isValidInput = true;
                 }
                 else
                 {
-                    Console.WriteLine("choice doesn't exist , please try again");
+                    Console.WriteLine("Invalid Choice,please enter option that exist in the menu.");
                 }
             }
 
@@ -690,7 +722,7 @@ Please make a choice:
         private static void getEnumParameter(string i_EnumParam, Dictionary<string, object> io_DynamicParams, Type i_EnumType)
         {
             Console.WriteLine($@"Please enter { i_EnumParam}.");
-            io_DynamicParams.Add(i_EnumParam, getEnumFromUser(i_EnumType));
+            io_DynamicParams.Add(i_EnumParam, getUserEnumInput(i_EnumType));
         }
 
 
@@ -717,12 +749,6 @@ Please make a choice:
                 }
             }
         }
-
-        /*public static void PrintLine()
-        {
-            Console.WriteLine("===============================================");
-            Console.WriteLine(Environment.NewLine);
-        }*/
 
         private static float getFloatInput()
         {

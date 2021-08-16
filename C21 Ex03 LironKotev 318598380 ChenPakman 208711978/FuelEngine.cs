@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
     
         public enum eFuelType
         {
-            Octan98,
+            Octan98=1,
             Octan96,
             Octan95,
             Soler
@@ -39,15 +39,15 @@ namespace Ex03.GarageLogic
         public void RefuelingAction(eFuelType i_FuelType, float i_FuelToAdd)
         {
             float newFuelAmount = i_FuelToAdd + base.m_CurrentEnginePower;
-            if (i_FuelType!=m_FuelType)
+            if (i_FuelType != m_FuelType)
             {
-                //throw
+                throw new ArgumentException("The Fuel type does not match");
             }
             else
             {
                 if(newFuelAmount>base.m_MaxEnginePower)
                 {
-                    //throw
+                    throw new ArgumentException("The Fuel amount is exceeds the maximum");
                 }
                 else
                 {

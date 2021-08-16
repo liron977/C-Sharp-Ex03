@@ -7,15 +7,7 @@ namespace Ex03.GarageLogic
 {
    public abstract class VehicleManufacturing
     {
-        /* public  enum eVehicleType
-         {
-             GasMototorcycle=1,
-             ElectricMotorcycle,
-             GasCar,
-            ElectricCar,
-             Truck
-
-         }*/
+  
         public enum eVehicleType
         {
 
@@ -40,7 +32,7 @@ namespace Ex03.GarageLogic
             return new VehicleDetails(i_Vehicle,i_OwnerName, i_OwnerPhone);
         }
 
-        public static Engine CreatePowerSource(
+        public static Engine CreateEnergySource(
             eVehicleType i_VehicleType,
             eEngineType i_EnergyType,
             float i_AmountOfPowerSource)
@@ -102,6 +94,7 @@ namespace Ex03.GarageLogic
 
             for (int i = 0; i < amountOfWheels; i++)
             {
+                
                 wheels.Add(new Wheel(i_Manufacturer, i_CurrAirPressure, maxAirPressure));
             }
 
@@ -162,7 +155,19 @@ namespace Ex03.GarageLogic
             return vehicleOfOwner;
 
         }
+         /*public static void CreateNewVehicle(eVehicleType vehicleType, eEngineType energyType,float currentAmountOfEnergySource,string wheelsManufacturer,float currAirPressure, Dictionary<string, Type> dynamicParams,string modelOfVehicle,string i_LicenseNumber,Dictionary<string, object> dynamicObject)
+        {
+            
+            Vehicle newVehicle;
 
+            Engine power=CreateEnergySource(vehicleType, energyType,currentAmountOfEnergySource);
+            List<Wheel> vehicleWheels=CreateWheels(vehicleType,wheelsManufacturer,currAirPressure);
+           GetRequiredVehicleParameters((int)vehicleType, dynamicParams);
+            //newVehicle = CreateVehicle((VehicleManufacturing.eVehicleType)vehicleType, modelOfVehicle, i_LicenseNumber, power, vehicleWheels, dynamicObject);
+            return power;
+           // return newVehicle;
+
+        }*/
         /*public void CreateVehicle(float[] currentAirPressure, List<string> i_VehicleInformation, eVehicleType i_TypeOfVehicle, string i_LicenseNumber)
         {
             Vehicle vehicleToReturn;
