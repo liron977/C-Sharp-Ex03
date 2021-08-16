@@ -7,8 +7,6 @@ namespace Ex03.ConsoleUI
 {
     public class GarageUI
     {
-       // public const int k_ExitFromMenu = 8;
-        public const int k_FirstOptionInMenu = 1;
 
         public enum eMenuChoice
         {
@@ -283,45 +281,6 @@ Please make a choice:
 
             return newVehicle;
         }
-
-        /*public static Vehicle CreateNewVehicle(string i_LicenseNumber)
-        {
-            int energyType = 1;
-            int vehicleType = 0;
-            string modelOfVehicle;
-            float currentAmountOfEnergySource;
-            float currAirPressure;
-            string wheelsManufacturer;
-            List<Wheel> vehicleWheels;
-            Vehicle newVehicle;
-            Engine power;
-            Dictionary<string, Type> dynamicParams = new Dictionary<string, Type>();
-            Dictionary<string, object> dynamicObject = new Dictionary<string, object>();
-
-            Console.WriteLine("Please enter the vehicle type");
-            vehicleType = getUserEnumInput(typeof(VehicleManufacturing.eVehicleType));
-            if (vehicleType == 1 || vehicleType == 2)
-            {
-                Console.WriteLine("Please enter the vehicle energy source:");
-                energyType = getUserEnumInput(typeof(VehicleManufacturing.eEngineType));
-            }
-
-            Console.WriteLine("Please enter the model of the vehicle");
-            modelOfVehicle = Console.ReadLine();
-            currentAmountOfEnergySource = GetCurrentAmountOfEnergySource((VehicleManufacturing.eVehicleType)vehicleType,
-                (VehicleManufacturing.eEngineType)energyType);
-            Console.WriteLine("Please enter the manufacturer of the wheels");
-            wheelsManufacturer = Console.ReadLine();
-
-            currAirPressure = GetAirPressure((VehicleManufacturing.eVehicleType)vehicleType,
-                (VehicleManufacturing.eEngineType)energyType);
-            VehicleManufacturing.CreateNewVehicle((VehicleManufacturing.eVehicleType)vehicleType, (VehicleManufacturing.eEngineType)energyType, currentAmountOfEnergySource, wheelsManufacturer,currAirPressure, dynamicParams,modelOfVehicle,i_LicenseNumber,dynamicObject);
-
-            getDynamicParametersDataFromUser(dynamicParams, dynamicObject);
-            newVehicle = VehicleManufacturing.CreateVehicle((VehicleManufacturing.eVehicleType)vehicleType, modelOfVehicle, i_LicenseNumber,out power, out vehicleWheels, dynamicObject);
-
-            return newVehicle;
-        }*/
 
         public static float GetCurrentAmountOfEnergySource(VehicleManufacturing.eVehicleType i_VehicleType, VehicleManufacturing.eEngineType i_EnergyType)
         {
