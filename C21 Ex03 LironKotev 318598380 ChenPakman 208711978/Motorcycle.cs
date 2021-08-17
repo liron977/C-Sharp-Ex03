@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 
 namespace Ex03.GarageLogic
 {
@@ -14,46 +13,37 @@ namespace Ex03.GarageLogic
             AA,
             BB
         }
-        private eLicenseType m_LicenseType;
-        private readonly int m_EngineCapacity;
-
-        public struct Constants
-        {
-            public const int k_NumOfWheels = 2;
-            public const float k_MotorcycleMaxAirPressure = 30.0f;
-            public const FuelEngine.eFuelType k_FuelType = FuelEngine.eFuelType.Octan95;
-            public const float k_MaxBatreryTime = 1.2f;
-            public const float k_MaxFuelCapacity = 7f;
-        }
+        private readonly eLicenseType r_LicenseType;
+        private readonly int r_EngineCapacity;
 
         public Motorcycle(
             string i_MotorcycleModel,
             string i_LicenseNumber,
             float i_EnergyPercentage,
             List<Wheel> i_Wheels,
-             Engine i_EnginType,
+             Engine i_EngineType,
             eLicenseType i_LicenseType,
             int i_EngineCapacity)
-            : base(i_MotorcycleModel, i_LicenseNumber, i_EnergyPercentage, i_Wheels, i_EnginType)
+            : base(i_MotorcycleModel, i_LicenseNumber, i_EnergyPercentage, i_Wheels, i_EngineType)
         {
-            m_EngineCapacity = i_EngineCapacity;
-            m_LicenseType = i_LicenseType;
+            r_EngineCapacity = i_EngineCapacity;
+            r_LicenseType = i_LicenseType;
         }
 
       
         public override string ToString()
         {
-            string MotorcycleDetails= string.Format($@"{base.ToString()} 
+            string motorcycleDetails= string.Format($@"{base.ToString()} 
 The motorcycle information:
-The license type: {m_LicenseType};
-The engine Capacity: {m_EngineCapacity}
+The license type: {r_LicenseType};
+The engine Capacity: {r_EngineCapacity}
 ");
-            return MotorcycleDetails;
+            return motorcycleDetails;
         }
-        public static void GetDynamicParameter(Dictionary<string, Type> io_DynamicParams)
+        public static void GetDynamicParameter(Dictionary<string, Type> o_DynamicParams)
         {
-            io_DynamicParams.Add("License type", typeof(eLicenseType));
-            io_DynamicParams.Add("Engine volume", typeof(int));
+            o_DynamicParams.Add("License type", typeof(eLicenseType));
+            o_DynamicParams.Add("Engine volume", typeof(int));
         }
 
     }

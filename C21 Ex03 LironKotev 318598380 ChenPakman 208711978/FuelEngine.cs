@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 
 namespace Ex03.GarageLogic
 {
@@ -21,7 +19,7 @@ namespace Ex03.GarageLogic
       eFuelType i_FuelType,
      float i_CurrentEnginePower,
      float i_MaxEnginePower)
-     : base(i_CurrentEnginePower, i_MaxEnginePower)
+     : base( i_MaxEnginePower, i_CurrentEnginePower)
         {
             m_FuelType = i_FuelType;
         }
@@ -57,10 +55,8 @@ namespace Ex03.GarageLogic
         }
         public override string ToString()
         {
-            string EngineDetails = string.Format($@"
-The Engin Type is: Fuel type
-");
-            return EngineDetails;
+            string engineDetails = "The Engine Type is: Fuel type";
+            return engineDetails;
         }
 
     }

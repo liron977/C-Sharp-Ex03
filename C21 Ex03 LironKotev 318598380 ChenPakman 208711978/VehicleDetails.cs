@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 
 namespace Ex03.GarageLogic
 {
@@ -78,7 +76,7 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
 
-            string vehicelDetails =  String.Format(
+            string vehicleDetails =  String.Format(
                 $@"
 The owner's name is: {m_OwnerName} 
 The owner's phone number is: {m_OwnerPhoneNumber}    
@@ -86,7 +84,7 @@ The vehicle information is:
 {m_Vehicle.ToString()}
 The status of the vehicle: {m_VehicleStatus.ToString()}");
 
-            return vehicelDetails;
+            return vehicleDetails;
 
         }
 

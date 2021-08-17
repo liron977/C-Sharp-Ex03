@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -20,7 +17,7 @@ namespace Ex03.GarageLogic
         protected eNumOfWheels m_NumOfWheels;
         public Engine m_EngineType;
 
-        public Vehicle(
+        protected Vehicle(
             string i_ModelName,
             string i_LicenseNumber,
             float i_EnergyPercentage,
@@ -34,18 +31,6 @@ namespace Ex03.GarageLogic
             m_EngineType = i_EngineType;
         }
         
-        public void inflationWheelsAirToMaximum()
-        {
-            float airLeftToFill = 0;
-
-            foreach (Wheel element in m_ListOfWheels)
-            {
-
-                airLeftToFill = element.MaxAirPressure - element.CurrentAirPressure;
-                element.InflationAction(airLeftToFill);
-            }
-
-        }
         public string ModelName
         {
             get
@@ -118,7 +103,7 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
 
-            string vehicelDetails = string.Format(
+            string vehicleDetails = string.Format(
                 $@"
 The model is: {m_ModelName} 
 The license number is: {r_LicenseNumber}    
@@ -126,15 +111,10 @@ The energy amount is: {m_EnergyPercentage}
 {m_ListOfWheels[0].ToString()}
 {m_EngineType.ToString()}");
 
-            return vehicelDetails;
+            return vehicleDetails;
 
         }
-
-        public static void GetListOfDataMembers(ref List<string> io_DataMemberList)
-        {
-            io_DataMemberList.Add("Module Name");
-            io_DataMemberList.Add("Current energy in vehicle");
-        }
+        
         public void UpdatePercent()
         {
             m_EnergyPercentage = (m_EngineType.CurrentEnginePower / m_EngineType.MaxEnginePower) * 100;

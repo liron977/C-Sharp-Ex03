@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Ex03.GarageLogic
@@ -13,6 +12,7 @@ namespace Ex03.GarageLogic
         {
             r_VehiclesInGarage = new Dictionary<string, VehicleDetails> { };
         }
+
         public Dictionary<string, VehicleDetails> VehiclesInGarage
         {
             get
@@ -20,40 +20,15 @@ namespace Ex03.GarageLogic
                 return r_VehiclesInGarage;
             }
         }
+
         public void AddVehicleToGarage(VehicleDetails i_VehicleDetailsToAdd)
         {
 
             r_VehiclesInGarage.Add(i_VehicleDetailsToAdd.Vehicle.LicenseNumber, i_VehicleDetailsToAdd);
 
         }
-        public void UpdateVehicleStatus(string i_LicenseNumber, VehicleDetails.eVehicleStatus i_VehicleNewStatus)
-        {
-            r_VehiclesInGarage[i_LicenseNumber].VehicleStatus = i_VehicleNewStatus;
-        }
-        public StringBuilder GetAllLiceseNumbersInGarage()
-        {
-            StringBuilder allLiceseNumbers = new StringBuilder();
-            foreach (string element in r_VehiclesInGarage.Keys)
-            {
-                allLiceseNumbers.Append(element);
-                allLiceseNumbers.Append(Environment.NewLine);
-            }
-            return allLiceseNumbers;
-        }
-        public StringBuilder GetLiceseNumbersInGarageByFilter(VehicleDetails.eVehicleStatus i_StausToFilter)
-        {
-            StringBuilder LiceseNumbersByFilter = new StringBuilder();
-            foreach (VehicleDetails element in r_VehiclesInGarage.Values)
-            {
-                if (element.VehicleStatus.Equals(i_StausToFilter))
-                {
-                    LiceseNumbersByFilter.Append(element);
-                    LiceseNumbersByFilter.Append(Environment.NewLine);
-                }
-            }
-            return LiceseNumbersByFilter;
-        }
-        public void inflationAirToMaximum(string i_LicenseNumber)
+        
+        public void InflationAirToMaximum(string i_LicenseNumber)
         {
             foreach (Wheel wheel in r_VehiclesInGarage[i_LicenseNumber].Vehicle.ListOfWheels)
             {
@@ -61,6 +36,7 @@ namespace Ex03.GarageLogic
                 wheel.InflationAction(amountToMaxAir);
             }
         }
+
         public void IsVehicleCanBeFueled(string i_LicenseNumber)
         {
             FuelEngine typeEngine = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as FuelEngine;
@@ -69,6 +45,7 @@ namespace Ex03.GarageLogic
                 throw new ArgumentException("Invalid engine type,this vehicle can`t be fueled");
             }
         }
+
         public void VehicleRefueling(string i_LicenseNumber, FuelEngine.eFuelType i_FuelType, float i_AmountOfFuleToAdd)
         {
                 FuelEngine toRefill = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as FuelEngine;
@@ -77,16 +54,17 @@ namespace Ex03.GarageLogic
 
 
         }
+
         public void VehicleCharging(string i_LicenseNumber, float i_MinutesToCharge)
         {
-            ElecticityEngine vehicleToCharge = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as ElecticityEngine;
-            vehicleToCharge.chargingAction(i_MinutesToCharge / 60);
+            ElectricityEngine vehicleToCharge = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as ElectricityEngine;
+            vehicleToCharge.ChargingAction(i_MinutesToCharge / 60);
 
         }
       
         public void IsVehicleCanBeCharged(string i_LicenseNumber)
         {
-            ElecticityEngine typeEngine = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as ElecticityEngine;
+            ElectricityEngine typeEngine = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as ElectricityEngine;
             if (typeEngine == null)
             {
                 throw new ArgumentException("Invalid engine type,this vehicle can`t be charged");
@@ -97,11 +75,13 @@ namespace Ex03.GarageLogic
             return r_VehiclesInGarage.ContainsKey(i_LicenseNumber);
 
         }
+
        public void ChangeStatusOfVehicle(string i_LicenseNumber, VehicleDetails.eVehicleStatus i_NewStatus)
         {
             r_VehiclesInGarage[i_LicenseNumber].VehicleStatus = i_NewStatus;
 
         }
+
         public string PrintSpecificVehicle(string i_LicenseNumber)
         {
             StringBuilder messageFromTheGarage = new StringBuilder();
