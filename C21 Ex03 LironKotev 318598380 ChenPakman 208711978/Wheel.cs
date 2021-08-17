@@ -17,11 +17,12 @@ namespace Ex03.GarageLogic
             m_Manufacturer = i_Manufacturer;
             r_MaximumAirPressureSetByManufacturer = i_MaximumAirPressureSetByManufacturer;
             if (i_CurrentAirPressure <= r_MaximumAirPressureSetByManufacturer)
-            { m_CurrentAirPressure = i_CurrentAirPressure; }
+            { 
+                m_CurrentAirPressure = i_CurrentAirPressure;
+            }
             else
             {
-                throw new FormatException(string.Format("The current air pressure is bigger than The maximum:{0}.", r_MaximumAirPressureSetByManufacturer));
-
+                throw new ValueOutOfRangeException(m_CurrentAirPressure, i_MaximumAirPressureSetByManufacturer, 0);
             }
         }
         public void InflationAction(float i_AirPressureToAdd)
@@ -30,7 +31,7 @@ namespace Ex03.GarageLogic
 
             if(newAirPressure> r_MaximumAirPressureSetByManufacturer)
             {
-                //throw 
+                throw new ValueOutOfRangeException(m_CurrentAirPressure, r_MaximumAirPressureSetByManufacturer, 0);
             }
             else
             {

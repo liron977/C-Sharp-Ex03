@@ -40,17 +40,7 @@ namespace Ex03.GarageLogic
             m_LicenseType = i_LicenseType;
         }
 
-        /*public override float GetMaxPower(VehicleManufacturing.eEngineType i_EnergyType)
-        {
-            if (i_EnergyType == VehicleManufacturing.eEngineType.Gas)
-            {
-                return Constants.k_MaxFuelCapacity;
-            }
-            else
-            {
-                return Constants.k_MaxBatreryTime;
-            }
-        }*/
+      
         public override string ToString()
         {
             string MotorcycleDetails= string.Format($@"{base.ToString()} 

@@ -31,11 +31,7 @@ namespace Ex03.GarageLogic
             m_MaxCarryingAmount = i_MaxCarryingAmount;
         }
 
-        /*public override float GetMaxPower(VehicleManufacturing.eEngineType i_EnergyType)
-        {
-            return Constants.k_MaxFuelCapacity;
-
-        }*/
+        
         public override string ToString()
         {
             string truckDetails=string.Format($@"{base.ToString()} 

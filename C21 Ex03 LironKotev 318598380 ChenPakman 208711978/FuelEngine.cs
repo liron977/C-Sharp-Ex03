@@ -47,7 +47,7 @@ namespace Ex03.GarageLogic
             {
                 if(newFuelAmount>base.m_MaxEnginePower)
                 {
-                    throw new ArgumentException("The Fuel amount is exceeds the maximum");
+                    throw new ValueOutOfRangeException(base.m_CurrentEnginePower,base.m_MaxEnginePower,0);
                 }
                 else
                 {

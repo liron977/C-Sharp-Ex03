@@ -45,17 +45,7 @@ namespace Ex03.GarageLogic
          
             m_NumberOfDoors = i_NumberOfDoors;
         }
-      /*  public override float GetMaxPower( VehicleManufacturing.eEngineType i_EnergyType)
-        {
-            if (i_EnergyType == VehicleManufacturing.eEngineType.Gas)
-            {
-                return Constants.k_MaxFuelCapacity;
-            }
-            else
-            {
-                return Constants.k_MaxBatreryTime;
-            }
-        }*/
+
         
         public eCarColor CarColor
         {

@@ -20,7 +20,7 @@ namespace Ex03.GarageLogic
             float newBatteryHoursAmount = i_BatteryhoursToCharge + base.m_CurrentEnginePower;
             if (newBatteryHoursAmount > base.m_MaxEnginePower)
             {
-                //throw
+                throw new ValueOutOfRangeException(base.m_CurrentEnginePower, base.m_MaxEnginePower, 0);
             }
             else
             {

@@ -83,15 +83,7 @@ namespace Ex03.GarageLogic
             vehicleToCharge.chargingAction(i_MinutesToCharge / 60);
 
         }
-        /*public void AddPower(string i_LicenseNumber, FuelEngine.eFuelType i_FuelType, float i_AmountOfFuleToAdd)
-        {
-            FuelEngine toRefill = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as FuelEngine;
-
-            if (r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType is FuelEngine)
-            {
-                VehicleRefueling(i_LicenseNumber);
-            }
-        }*/
+      
         public void IsVehicleCanBeCharged(string i_LicenseNumber)
         {
             ElecticityEngine typeEngine = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as ElecticityEngine;

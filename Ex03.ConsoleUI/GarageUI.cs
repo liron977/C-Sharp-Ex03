@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ex03.GarageLogic;
+using System.Threading;
 
 namespace Ex03.ConsoleUI
 {
@@ -17,7 +18,9 @@ namespace Ex03.ConsoleUI
             RefuleVehicle,
             ChargeVehicle,
             PresentInformationOfvehicle,
+            ClearScreen,
             Exit
+            
         }
 
         public static void StartMenu()
@@ -48,12 +51,19 @@ namespace Ex03.ConsoleUI
                     }
 
                 }
-
+                catch (ValueOutOfRangeException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
-
+                catch (FormatException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
             }
 
         }
@@ -62,7 +72,7 @@ namespace Ex03.ConsoleUI
         {
             if (i_UserChoice < (int)eMenuChoice.InsertVehicleToTheGarage || i_UserChoice > (int)eMenuChoice.Exit || i_IsValidChoice == false)
             {
-                throw new FormatException("Invalid option! please try again");
+                throw new ValueOutOfRangeException(i_UserChoice, (int)eMenuChoice.Exit,(int)eMenuChoice.InsertVehicleToTheGarage);
             }
         }
 
@@ -80,7 +90,9 @@ Please make a choice:
 5 - Refuel a vehicle.
 6 - Charge a vehicle.
 7 - Present all the details of a vehicle.
-8 - Exit.
+8 - Clear screen.
+9 - Exit.
+
 ");
             Console.WriteLine(messageMenu);
         }
@@ -96,24 +108,39 @@ Please make a choice:
             {
                 case eMenuChoice.InsertVehicleToTheGarage:
                     InsertVehicleToGarage(i_Garage);
+                    
+                    
                     break;
                 case eMenuChoice.PresentVehicleLicenseNumber:
                     ShowAllLicenseNumbers(i_Garage);
+                    
+                   
                     break;
                 case eMenuChoice.ChangeVehicleStatus:
                     ChangeVehicleStatus(i_Garage);
+                    
+                    
                     break;
                 case eMenuChoice.PumbAirWheelsToMax:
                     AddAirToWheels(i_Garage);
+                    
+                    
                     break;
                 case eMenuChoice.RefuleVehicle:
                     AddGasToVehicle(i_Garage);
+                  
+                   
                     break;
                 case eMenuChoice.ChargeVehicle:
                     AddElectricityToCar(i_Garage);
+                    
                     break;
                 case eMenuChoice.PresentInformationOfvehicle:
                     PrintCarByLicenseNumber(i_Garage);
+                   
+                    break;
+                case eMenuChoice.ClearScreen:
+                    System.Console.Clear();
                     break;
             }
         }
@@ -125,7 +152,7 @@ Please make a choice:
             {
                 try
                 {
-                    Console.WriteLine(@"Please enter the vehicle license number.");
+                    Console.WriteLine("Please enter the vehicle license number.");
                     string licenseNumber = Console.ReadLine();
                     CheckValidityLicenseNumber(licenseNumber);
 
@@ -285,24 +312,22 @@ Please make a choice:
         public static float GetCurrentAmountOfEnergySource(VehicleManufacturing.eVehicleType i_VehicleType, VehicleManufacturing.eEngineType i_EnergyType)
         {
             float inputInFloat = 0;
+            bool isValidAmountOfEnergySource = false;
 
-            
-                Console.WriteLine(@"How much power is your vehicle left? ");
+                while (!isValidAmountOfEnergySource) 
+            {
+                Console.WriteLine("What is the current amount of energy in the vehicle?");
                 string inputFromUser = Console.ReadLine();
 
-            float.TryParse(inputFromUser, out inputInFloat);
-                
-                    /*if (inputInFloat <= maxPower)
-                    {
-                        askAgain = false;
-                    }
-
-                    else
-                    {
-                        Console.WriteLine("The value you entered is too big please try again");
-                    }
-                }*/
-
+                if (float.TryParse(inputFromUser, out inputInFloat))
+                {
+                    isValidAmountOfEnergySource = true;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter only numbers");
+                }
+            }
 
             return inputInFloat;
         }
@@ -340,12 +365,12 @@ Please make a choice:
                     string licenseNumber = Console.ReadLine();
                     CheckValidityLicenseNumber(licenseNumber);
                     Console.WriteLine(
-                        @"Please enter the new vehicle status:
+                        @"Please enter the new status of the vehicle:
 1 - Repair
 2 - Fixed
 3 - Paid");
                     string newStatus = Console.ReadLine();
-                    //PrintLine();
+                   
                     CheckValidityStatus(newStatus);
                     if (i_Garage.IsVehicleExistByLicense(licenseNumber))
                     {
@@ -387,8 +412,8 @@ Please make a choice:
 
         public static void AddAirToWheels(Garage i_Garage)
         {
-            bool askAgain = false;
-            while (askAgain == false)
+            bool isValidInput = false;
+            while (!isValidInput)
             {
                 try
                 {
@@ -398,7 +423,7 @@ Please make a choice:
                     if (i_Garage.IsVehicleExistByLicense(licenseNumber))
                     {
                         i_Garage.inflationAirToMaximum(licenseNumber);
-                        Console.WriteLine($@"The Wheels are full till the end: {i_Garage.VehiclesInGarage[licenseNumber].Vehicle.ListOfWheels[0].CurrentAirPressure}");
+                        Console.WriteLine($"The wheels were inflated to the maximum: {i_Garage.VehiclesInGarage[licenseNumber].Vehicle.ListOfWheels[0].CurrentAirPressure}");
 
                     }
                     else
@@ -406,7 +431,7 @@ Please make a choice:
                         PrintTheLicenseDoseNotExist();
                     }
 
-                    askAgain = true;
+                    isValidInput = true;
                 }
                 catch (FormatException ex)
                 {
@@ -441,11 +466,11 @@ Please make a choice:
         public static void ShowAllLicenseNumbersFilter(Garage i_Garage)
         {
             int howManyCars = 0;
-            Console.WriteLine(
-                @"Please enter the filter for show license numbers:");
+
+            Console.WriteLine("Please enter the filter for show license numbers:");
             int filterType = getUserEnumInput(typeof(VehicleDetails.eVehicleStatus));
             Console.WriteLine();
-
+            Console.WriteLine("The license numbers are:");
             foreach (KeyValuePair<string, VehicleDetails> entry in i_Garage.VehiclesInGarage)
             {
                 if ((VehicleDetails.eVehicleStatus)filterType == entry.Value.VehicleStatus)
@@ -469,6 +494,7 @@ Please make a choice:
             }
             else
             {
+                Console.WriteLine("The license numbers are:");
                 foreach (KeyValuePair<string, VehicleDetails> entry in i_Garage.VehiclesInGarage)
                 {
                     Console.WriteLine(entry.Key);
@@ -478,8 +504,9 @@ Please make a choice:
 
         public static void PrintCarByLicenseNumber(Garage i_Garage)
         {
-            bool askAgain = false;
-            while (askAgain == false)
+            bool isValidLicenseNumber = false;
+
+            while (!isValidLicenseNumber)
             {
                 try
                 {
@@ -497,7 +524,7 @@ Please make a choice:
                         PrintTheLicenseDoseNotExist();
                     }
 
-                    askAgain = true;
+                    isValidLicenseNumber = true;
                 }
                 catch (FormatException ex)
                 {
@@ -509,8 +536,8 @@ Please make a choice:
 
         public static void AddGasToVehicle(Garage i_Garage)
         {
-            bool askAgain = false;
-            while (askAgain == false)
+            bool isValidGasToAdd = false;
+            while (!isValidGasToAdd)
             {
                 try
                 {
@@ -535,7 +562,7 @@ Please make a choice:
                     {
                         PrintTheLicenseDoseNotExist();
                     }
-                    askAgain = true;
+                    isValidGasToAdd = true;
                 }
 
 
@@ -549,18 +576,17 @@ Please make a choice:
                     Console.WriteLine(ex.Message);
                     Console.WriteLine("Please try again.");
                 }
-                /*catch (ValueOutOfRangeException ex)
+                catch (ValueOutOfRangeException ex)
                 {
                     Console.WriteLine(ex.Message);
-                    Console.WriteLine("Please try again.");
-                }*/
+                }
 
             }
         }
         public static void AddElectricityToCar(Garage i_Garage)
         {
-            bool askAgain = false;
-            while (askAgain == false)
+            bool isValidElectricityToAdd = false;
+            while (!isValidElectricityToAdd)
             {
                 try
                 {
@@ -583,18 +609,18 @@ Please make a choice:
                         PrintTheLicenseDoseNotExist();
                     }
 
-                    askAgain = true;
+                    isValidElectricityToAdd = true;
                 }
                 catch (FormatException ex)
                 {
                     Console.WriteLine(ex.Message);
                     Console.WriteLine("Please try again.");
                 }
-                /*catch (ValueOutOfRangeException ex)
+                catch (ValueOutOfRangeException ex)
                 {
+                
                     Console.WriteLine(ex.Message);
-                    Console.WriteLine("Please try again.");
-                }*/
+                }
                 catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);
@@ -628,7 +654,6 @@ Please make a choice:
         }
 
 
-        // $G$ CSS-013 (-3) Bad variable name (should be in the form of: i_CamelCase).
         private static void getIntParameter(string i_CurrentParam, Dictionary<string, object> i_DynamicOjects)
         {
             Console.WriteLine($@"Please enter {i_CurrentParam} as a positive number");
@@ -692,7 +717,7 @@ Please make a choice:
             bool isValidBool = false;
             Console.WriteLine($@"Choose {i_BoolParam}? Press 1 for 'True' ,press 2 for 'False'.");
 
-            while (isValidBool == false)
+            while (!isValidBool)
             {
                 userInput = Console.ReadLine();
                 bool success = int.TryParse(userInput, out userInputAsInt);
@@ -715,13 +740,13 @@ Please make a choice:
             bool parsingWorked = false;
             float inputOfUserFloat = 0;
 
-            while (parsingWorked == false)
+            while (!parsingWorked)
             {
 
                 inputOfuser = Console.ReadLine();
                 parsingWorked = float.TryParse(inputOfuser, out inputOfUserFloat);
 
-                if (parsingWorked == true)
+                if (parsingWorked)
                 {
                     if (inputOfUserFloat < 0)
                     {
@@ -745,13 +770,13 @@ Please make a choice:
             bool parsingWorked = false;
             int inputOfUserInt = 0;
 
-            while (parsingWorked == false)
+            while (!parsingWorked)
             {
 
                 inputOfuser = Console.ReadLine();
                 parsingWorked = int.TryParse(inputOfuser, out inputOfUserInt);
 
-                if (parsingWorked == true)
+                if (parsingWorked)
                 {
                     if (inputOfUserInt < 0)
                     {

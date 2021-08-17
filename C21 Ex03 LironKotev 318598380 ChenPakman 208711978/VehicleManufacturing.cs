@@ -155,67 +155,7 @@ namespace Ex03.GarageLogic
             return vehicleOfOwner;
 
         }
-         /*public static void CreateNewVehicle(eVehicleType vehicleType, eEngineType energyType,float currentAmountOfEnergySource,string wheelsManufacturer,float currAirPressure, Dictionary<string, Type> dynamicParams,string modelOfVehicle,string i_LicenseNumber,Dictionary<string, object> dynamicObject)
-        {
-            
-            Vehicle newVehicle;
-
-            Engine power=CreateEnergySource(vehicleType, energyType,currentAmountOfEnergySource);
-            List<Wheel> vehicleWheels=CreateWheels(vehicleType,wheelsManufacturer,currAirPressure);
-           GetRequiredVehicleParameters((int)vehicleType, dynamicParams);
-            //newVehicle = CreateVehicle((VehicleManufacturing.eVehicleType)vehicleType, modelOfVehicle, i_LicenseNumber, power, vehicleWheels, dynamicObject);
-            return power;
-           // return newVehicle;
-
-        }*/
-        /*public void CreateVehicle(float[] currentAirPressure, List<string> i_VehicleInformation, eVehicleType i_TypeOfVehicle, string i_LicenseNumber)
-        {
-            Vehicle vehicleToReturn;
-            float energyPersantage;
-            switch (i_TypeOfVehicle)
-            {
-
-                case eVehicleType.GasMototorcycle:
-                    {
-                        energyPersantage = float.Parse(i_VehicleInformation[1]);
-                        vehicleToReturn = new Motorcycle((string)i_VehicleInformation[0], i_LicenseNumber, energyPersantage,,)
-                            break;
-                    }
-
-
-
-
-
-            }
-        }*/
-        /* public static List<string> ConvertUserChoiceToTypeOfVehicle(eVehicleType i_UserChoiceForVehicle)
-         {
-             List<string> vehicleDataMembers = new List<string>();
-
-             switch (i_UserChoiceForVehicle)
-             {
-                 case eVehicleType.GasMototorcycle: case eVehicleType.ElectricMotorcycle:
-                     {
-                         Motorcycle.GetListOfDataMembers(ref vehicleDataMembers);
-                         break;
-                     }
-
-                 case eVehicleType.GasCar: case eVehicleType.ElectricCar:
-                     {
-                         Car.GetListOfDataMembers(ref vehicleDataMembers);
-                         break;
-                     }
-                 case eVehicleType.Truck:
-                     {
-                         Truck.GetListOfDataMembers(ref vehicleDataMembers);
-                         break;
-                     }
-
-             }
-             Engine.GetListOfDataMembers(ref vehicleDataMembers);
-             return vehicleDataMembers;
-         }
- */
+        
 
     }
 }
