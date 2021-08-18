@@ -35,7 +35,7 @@ namespace Ex03.GarageLogic
         {
             string motorcycleDetails= string.Format($@"{base.ToString()} 
 The motorcycle information:
-The license type: {r_LicenseType};
+The license type: {r_LicenseType}
 The engine Capacity: {r_EngineCapacity}
 ");
             return motorcycleDetails;

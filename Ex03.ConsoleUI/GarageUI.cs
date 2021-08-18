@@ -123,15 +123,15 @@ Please make a choice:
 
                     break;
                 case eMenuChoice.RefuelVehicle:
-                    addGasToVehicle(i_Garage);
+                    addFuelToVehicle(i_Garage);
 
                     break;
                 case eMenuChoice.ChargeVehicle:
-                    addElectricityToCar(i_Garage);
+                    addElectricityToVehicle(i_Garage);
 
                     break;
                 case eMenuChoice.PresentInformationOfVehicle:
-                    printCarByLicenseNumber(i_Garage);
+                    printVehicleByLicenseNumber(i_Garage);
 
                     break;
                 case eMenuChoice.ClearScreen:
@@ -485,7 +485,7 @@ Please make a choice:
 
         private static void printTheLicenseDoseNotExist()
         {
-            Console.WriteLine("Sorry, the license does not exist. You are returned to the main menu");
+            Console.WriteLine("Sorry, the license does not exist. You are redirected to the main menu");
         }
 
         private static void showAllLicenseNumbers(Garage i_Garage)
@@ -511,7 +511,7 @@ Please make a choice:
 
         private static void showAllLicenseNumbersFilter(Garage i_Garage)
         {
-            int howManyCars = 0;
+            int howManyVehiclesInGarage = 0;
             int filterType;
 
             Console.WriteLine("Please enter the filter for show license numbers:");
@@ -523,11 +523,11 @@ Please make a choice:
                 if((VehicleDetails.eVehicleStatus)filterType == entry.Value.VehicleStatus)
                 {
                     Console.WriteLine(entry.Key);
-                    howManyCars++;
+                    howManyVehiclesInGarage++;
                 }
             }
 
-            if(howManyCars == 0)
+            if(howManyVehiclesInGarage == 0)
             {
                 Console.WriteLine("There are no vehicles by this filter in the garage");
             }
@@ -549,7 +549,7 @@ Please make a choice:
             }
         }
 
-        private static void printCarByLicenseNumber(Garage i_Garage)
+        private static void printVehicleByLicenseNumber(Garage i_Garage)
         {
             bool isValidLicenseNumber = false;
             string licenseNumber;
@@ -583,7 +583,7 @@ Please make a choice:
             }
         }
 
-        private static void addGasToVehicle(Garage i_Garage)
+        private static void addFuelToVehicle(Garage i_Garage)
         {
             bool isValidGasToAdd = false;
             string licenseNumber;
@@ -601,9 +601,9 @@ Please make a choice:
                     if(i_Garage.IsVehicleExistByLicense(licenseNumber))
                     {
                         i_Garage.IsVehicleCanBeFueled(licenseNumber);
-                        Console.WriteLine("Please enter the liter of gas to add:");
+                        Console.WriteLine("Please enter the liter of fuel to add:");
                         amountOfGas = Console.ReadLine();
-                        Console.WriteLine(@"Please enter the type of gas to add:");
+                        Console.WriteLine(@"Please enter the type of fuel to add:");
                         typeOfGas = getUserEnumInput(typeof(FuelEngine.eFuelType));
 
                         i_Garage.VehicleRefueling(
@@ -638,7 +638,7 @@ Please make a choice:
             }
         }
 
-        private static void addElectricityToCar(Garage i_Garage)
+        private static void addElectricityToVehicle(Garage i_Garage)
         {
             bool isValidElectricityToAdd = false;
             string licenseNumber;
@@ -865,7 +865,7 @@ Please make a choice:
 
             if(stringIsEmpty)
             {
-                throw new ArgumentException("The input is empty!");
+                throw new ArgumentException("The input is empty!,You are redirected to the main menu ");
             }
         }
     }

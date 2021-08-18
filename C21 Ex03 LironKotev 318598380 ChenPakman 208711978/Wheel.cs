@@ -67,10 +67,12 @@
 
         public override string ToString()
         {
-           string wheelsDetails=string.Format($@"The information about the wheel: 
+           string wheelsDetails=string.Format(
+               $@"
+The information about the wheel: 
 The manufacturer is: {m_Manufacturer}
-The current air pressure is {m_CurrentAirPressure}
-The maximum air pressure is {r_MaximumAirPressureSetByManufacturer}");
+The current air pressure is : {m_CurrentAirPressure}
+The maximum air pressure is :{r_MaximumAirPressureSetByManufacturer}");
             return wheelsDetails;
         }
 

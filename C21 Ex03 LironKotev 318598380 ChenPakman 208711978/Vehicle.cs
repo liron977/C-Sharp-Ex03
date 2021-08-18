@@ -29,8 +29,9 @@ namespace Ex03.GarageLogic
             m_EnergyPercentage = i_EnergyPercentage;
             m_ListOfWheels = i_ListOfWheels;
             m_EngineType = i_EngineType;
+            UpdatePercent();
         }
-        
+
         public string ModelName
         {
             get
@@ -99,26 +100,26 @@ namespace Ex03.GarageLogic
                 m_EngineType = value;
             }
         }
-
+        public void UpdatePercent()
+        {
+            m_EnergyPercentage = (m_EngineType.CurrentEnginePower / m_EngineType.MaxEnginePower) * 100;
+        }
         public override string ToString()
         {
 
             string vehicleDetails = string.Format(
-                $@"
+                $@" 
 The model is: {m_ModelName} 
-The license number is: {r_LicenseNumber}    
-The energy amount is: {m_EnergyPercentage} 
+The license number is: {r_LicenseNumber} 
+The number of wheels is: {m_NumOfWheels} 
+The energy percentage amount is: {m_EnergyPercentage} %
 {m_ListOfWheels[0].ToString()}
 {m_EngineType.ToString()}");
 
             return vehicleDetails;
 
         }
-        
-        public void UpdatePercent()
-        {
-            m_EnergyPercentage = (m_EngineType.CurrentEnginePower / m_EngineType.MaxEnginePower) * 100;
-        }
+       
 
     }
 }

@@ -55,7 +55,11 @@ namespace Ex03.GarageLogic
         }
         public override string ToString()
         {
-            string engineDetails = "The Engine Type is: Fuel type";
+
+           string engineDetails= string.Format($@"
+The engine type is fuel type,and the fuel type {m_FuelType}
+The energy amount is : {m_CurrentEnginePower}
+");
             return engineDetails;
         }
 

@@ -28,7 +28,7 @@ namespace Ex03.GarageLogic
         {
             string truckDetails=string.Format($@"{base.ToString()} 
 The Truck information:
-Is truck carriers dangerous materials ?: {r_IsCarrierDangerousMaterials};
+Is truck carriers dangerous materials ? {r_IsCarrierDangerousMaterials}
 The max carrying amount is : {r_MaxCarryingAmount}
 ");
             return truckDetails;

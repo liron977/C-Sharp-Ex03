@@ -17,13 +17,20 @@
             else
             {
                 base.CurrentEnginePower = newBatteryHoursAmount;
+
             }
         }
 
         public override string ToString()
         {
-            string engineDetails = "The Engine Type is: Electricity type";
+
+            string engineDetails = string.Format($@"
+The engine type is electricity type
+The energy amount is : {m_CurrentEnginePower}
+");
             return engineDetails;
+
+
         }
     }
 }

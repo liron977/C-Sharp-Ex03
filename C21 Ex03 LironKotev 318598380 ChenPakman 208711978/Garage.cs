@@ -59,9 +59,11 @@ namespace Ex03.GarageLogic
         {
             ElectricityEngine vehicleToCharge = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as ElectricityEngine;
             vehicleToCharge.ChargingAction(i_MinutesToCharge / 60);
+            r_VehiclesInGarage[i_LicenseNumber].Vehicle.UpdatePercent();
+
 
         }
-      
+
         public void IsVehicleCanBeCharged(string i_LicenseNumber)
         {
             ElectricityEngine typeEngine = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as ElectricityEngine;
