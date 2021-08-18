@@ -493,7 +493,7 @@ Please make a choice:
             string isFilter;
 
             Console.WriteLine(
-                @"Do you want to filter the license numbers by the status of condition?
+                @"Do you want to filter the license numbers by status?
 1 - for yes
 2 - for no");
             isFilter = Console.ReadLine();
@@ -691,25 +691,28 @@ Please make a choice:
             Dictionary<string, Type> i_VehicleDynamicTypes,
             Dictionary<string, object> o_VehicleDynamicObjects)
         {
-            foreach(string currentParam in i_VehicleDynamicTypes.Keys)
-            {
-                if(i_VehicleDynamicTypes[currentParam] == typeof(bool))
+            
+                foreach (string currentParam in i_VehicleDynamicTypes.Keys)
                 {
-                    getBoolParameter(currentParam, o_VehicleDynamicObjects);
+                Type currentParameter = i_VehicleDynamicTypes[currentParam];
+                if (currentParameter == typeof(bool))
+                    {
+                        getBoolParameter(currentParam, o_VehicleDynamicObjects);
+                    }
+                    else if (currentParameter == typeof(int))
+                    {
+                        getIntParameter(currentParam, o_VehicleDynamicObjects);
+                    }
+                    else if (currentParameter == typeof(float))
+                    {
+                        getFloatParameter(currentParam, o_VehicleDynamicObjects);
+                    }
+                    else if (currentParameter.IsEnum)
+                    {
+                        getEnumParameter(currentParam, o_VehicleDynamicObjects, i_VehicleDynamicTypes[currentParam]);
+                    }
                 }
-                else if(i_VehicleDynamicTypes[currentParam] == typeof(int))
-                {
-                    getIntParameter(currentParam, o_VehicleDynamicObjects);
-                }
-                else if(i_VehicleDynamicTypes[currentParam] == typeof(float))
-                {
-                    getFloatParameter(currentParam, o_VehicleDynamicObjects);
-                }
-                else if(i_VehicleDynamicTypes[currentParam].IsEnum)
-                {
-                    getEnumParameter(currentParam, o_VehicleDynamicObjects, i_VehicleDynamicTypes[currentParam]);
-                }
-            }
+           
         }
 
 
@@ -725,7 +728,20 @@ Please make a choice:
             Console.WriteLine($@"Please enter {i_CurrentParam} as a positive number");
             io_DynamicObjects.Add(i_CurrentParam, getFloatInput());
         }
+        private static void printEnumValues(Type i_Enum)
+        {
+            Array valuesOfEnum = Enum.GetValues(i_Enum);
+            int numberOfEnum = valuesOfEnum.Length;
+            int currentValueIndex = 1;
 
+            Console.WriteLine("Choose an option from the menu below: ");
+            foreach (object enumValue in valuesOfEnum)
+            {
+                Console.WriteLine(string.Format("({0})-{1}", currentValueIndex, enumValue));
+                currentValueIndex++;
+            }
+
+        }
         private static int getUserEnumInput(Type i_Enum)
         {
             Array valuesOfEnum = Enum.GetValues(i_Enum);
@@ -734,19 +750,12 @@ Please make a choice:
             bool isParseNumber;
             bool isValidInput = false;
             int indexOfEnumValue = 0;
-            int currentValueIndex = 1;
 
             while(!isValidInput)
             {
-                currentValueIndex = 1;
-                Console.WriteLine("Choose an option from the menu below: ");
-                foreach(object enumValue in valuesOfEnum)
-                {
-                    Console.WriteLine(string.Format("({0})-{1}", currentValueIndex, enumValue));
-                    currentValueIndex++;
-                }
+                printEnumValues(i_Enum);
 
-                indexOfEnum = Console.ReadLine();
+                 indexOfEnum = Console.ReadLine();
                 checkStringEmpty(indexOfEnum);
 
                 isParseNumber = int.TryParse(indexOfEnum, out indexOfEnumValue);
@@ -811,20 +820,25 @@ Please make a choice:
                 inputOfuser = Console.ReadLine();
                 checkStringEmpty(inputOfuser);
 
-                parsingWorked = float.TryParse(inputOfuser, out inputOfUserFloat);
+                 float.TryParse(inputOfuser, out inputOfUserFloat);
+                if (inputOfUserFloat < 0)
+                {
+                    Console.WriteLine("Please only enter positive numbers, try again");
+                    parsingWorked = false;
+                }
 
-                if(parsingWorked)
-                {
-                    if(inputOfUserFloat < 0)
-                    {
-                        Console.WriteLine("Please only enter positive numbers, try again");
-                        parsingWorked = false;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Wrong format, please try again");
-                }
+                        if (parsingWorked)
+                          {
+                              if (inputOfUserFloat < 0)
+                              {
+                                  Console.WriteLine("Please only enter positive numbers, try again");
+                                  parsingWorked = false;
+                              }
+                          }
+                          else
+                          {
+                              Console.WriteLine("Wrong format, please try again");
+                          }
             }
 
             return inputOfUserFloat;

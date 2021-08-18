@@ -21,6 +21,7 @@ namespace Ex03.GarageLogic
         {
             r_IsCarrierDangerousMaterials = i_IsCarrierDangerousMaterials;
             r_MaxCarryingAmount = i_MaxCarryingAmount;
+            base.NumOfWheels = eNumOfWheels.Truck;
         }
 
         

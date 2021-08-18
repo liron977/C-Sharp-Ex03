@@ -36,6 +36,7 @@ namespace Ex03.GarageLogic
             : base(i_CarModel, i_LicenseNumber, i_EnergyPercentage, i_Wheels, i_EngineType)
         {
             m_NumberOfDoors = i_NumberOfDoors;
+            base.NumOfWheels = eNumOfWheels.Car;
         }
 
 

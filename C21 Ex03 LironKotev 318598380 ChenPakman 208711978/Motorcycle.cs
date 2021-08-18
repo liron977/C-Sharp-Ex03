@@ -28,6 +28,7 @@ namespace Ex03.GarageLogic
         {
             r_EngineCapacity = i_EngineCapacity;
             r_LicenseType = i_LicenseType;
+            base.NumOfWheels = eNumOfWheels.Motorcycle;
         }
 
       

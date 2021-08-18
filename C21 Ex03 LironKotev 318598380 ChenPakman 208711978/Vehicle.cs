@@ -111,7 +111,7 @@ namespace Ex03.GarageLogic
                 $@" 
 The model is: {m_ModelName} 
 The license number is: {r_LicenseNumber} 
-The number of wheels is: {m_NumOfWheels} 
+The number of wheels is: {(int)m_NumOfWheels} 
 The energy percentage amount is: {m_EnergyPercentage} %
 {m_ListOfWheels[0].ToString()}
 {m_EngineType.ToString()}");
