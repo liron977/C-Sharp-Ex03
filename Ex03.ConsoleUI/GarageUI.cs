@@ -270,6 +270,7 @@ Please make a choice:
             Vehicle newVehicle;
             Dictionary<string, Type> dynamicParams = new Dictionary<string, Type>();
             Dictionary<string, object> dynamicObject = new Dictionary<string, object>();
+            Engine power;
 
             Console.WriteLine("Please enter the vehicle type");
             vehicleType = getUserEnumInput(typeof(VehicleManufacturing.eVehicleType));
@@ -279,18 +280,12 @@ Please make a choice:
                 energyType = getUserEnumInput(typeof(VehicleManufacturing.eEngineType));
             }
 
-            currentAmountOfEnergySource = getCurrentAmountOfEnergySource(
-                (VehicleManufacturing.eVehicleType)vehicleType,
-                (VehicleManufacturing.eEngineType)energyType);
-
-            Engine power = VehicleManufacturing.CreateEnergySource(
+            currentAmountOfEnergySource = getCurrentAmountOfEnergySource();
+            power = VehicleManufacturing.CreateEnergySource(
                 (VehicleManufacturing.eVehicleType)vehicleType,
                 (VehicleManufacturing.eEngineType)energyType,
                 currentAmountOfEnergySource);
-
-            currAirPressure = getAirPressure(
-                (VehicleManufacturing.eVehicleType)vehicleType,
-                (VehicleManufacturing.eEngineType)energyType);
+            currAirPressure = getAirPressure();
             wheelsManufacturer = getWheelsManufacturer();
             vehicleWheels = VehicleManufacturing.CreateWheels(
                 (VehicleManufacturing.eVehicleType)vehicleType,
@@ -341,9 +336,7 @@ Please make a choice:
             return wheelsManufacturer;
         }
 
-        private static float getCurrentAmountOfEnergySource(
-            VehicleManufacturing.eVehicleType i_VehicleType,
-            VehicleManufacturing.eEngineType i_EnergyType)
+        private static float getCurrentAmountOfEnergySource()
         {
             float inputInFloat = 0;
             bool isValidAmountOfEnergySource = false;
@@ -366,9 +359,7 @@ Please make a choice:
             return inputInFloat;
         }
 
-        private static float getAirPressure(
-            VehicleManufacturing.eVehicleType i_VehicleType,
-            VehicleManufacturing.eEngineType i_EnergyType)
+        private static float getAirPressure()
         {
             bool isValidAirPressure = false;
             float inputInFloat = 0;
@@ -721,16 +712,15 @@ Please make a choice:
         }
 
 
-        private static void getFloatParameter(string i_CurrentParam, Dictionary<string, object> io_DynamicObjects)
+        private static void getFloatParameter(string i_CurrentParam, Dictionary<string, object> o_DynamicObjects)
         {
             Console.WriteLine($@"Please enter {i_CurrentParam} as a positive number");
-            io_DynamicObjects.Add(i_CurrentParam, getFloatInput());
+            o_DynamicObjects.Add(i_CurrentParam, getFloatInput());
         }
 
         private static void printEnumValues(Type i_Enum)
         {
             Array valuesOfEnum = Enum.GetValues(i_Enum);
-            int numberOfEnum = valuesOfEnum.Length;
             int currentValueIndex = 1;
 
             Console.WriteLine("Choose an option from the menu below: ");

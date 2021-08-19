@@ -98,20 +98,20 @@ namespace Ex03.GarageLogic
             return wheels;
         }
 
-        public static void GetRequiredVehicleParameters(int i_VehicleType, Dictionary<string, Type> io_DynamicParams)
+        public static void GetRequiredVehicleParameters(int i_VehicleType, Dictionary<string, Type> o_DynamicParams)
         {
             eVehicleType vehicleType = (eVehicleType)i_VehicleType;
 
             switch(vehicleType)
             {
                 case eVehicleType.Car:
-                    Car.GetDynamicParameter(io_DynamicParams);
+                    Car.GetDynamicParameter(o_DynamicParams);
                     break;
                 case eVehicleType.Motorcycle:
-                    Motorcycle.GetDynamicParameter(io_DynamicParams);
+                    Motorcycle.GetDynamicParameter(o_DynamicParams);
                     break;
                 case eVehicleType.Truck:
-                    Truck.GetDynamicParameter(io_DynamicParams);
+                    Truck.GetDynamicParameter(o_DynamicParams);
                     break;
             }
         }

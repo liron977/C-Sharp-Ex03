@@ -14,10 +14,8 @@
             {
                 throw new ValueOutOfRangeException(base.m_CurrentEnginePower, base.m_MaxEnginePower, 0);
             }
-            else
-            {
-                base.CurrentEnginePower = newBatteryHoursAmount;
-            }
+
+            base.CurrentEnginePower = newBatteryHoursAmount;
         }
 
         public override string ToString()

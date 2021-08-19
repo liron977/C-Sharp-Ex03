@@ -40,17 +40,13 @@ namespace Ex03.GarageLogic
             {
                 throw new ArgumentException("The Fuel type does not match");
             }
-            else
+
+            if(newFuelAmount > m_MaxEnginePower)
             {
-                if(newFuelAmount > base.m_MaxEnginePower)
-                {
-                    throw new ValueOutOfRangeException(base.m_CurrentEnginePower, base.m_MaxEnginePower, 0);
-                }
-                else
-                {
-                    base.CurrentEnginePower = newFuelAmount;
-                }
+                throw new ValueOutOfRangeException(m_CurrentEnginePower, m_MaxEnginePower, 0);
             }
+
+            CurrentEnginePower = newFuelAmount;
         }
 
         public override string ToString()
