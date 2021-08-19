@@ -10,6 +10,7 @@
         public void ChargingAction(float i_BatteryHoursToCharge)
         {
             float newBatteryHoursAmount = i_BatteryHoursToCharge + base.m_CurrentEnginePower;
+
             if(newBatteryHoursAmount > base.m_MaxEnginePower)
             {
                 throw new ValueOutOfRangeException(base.m_CurrentEnginePower, base.m_MaxEnginePower, 0);

@@ -46,7 +46,5 @@ namespace Ex03.GarageLogic
                 m_MaxEnginePower = value;
             }
         }
-
-     
     }
 }

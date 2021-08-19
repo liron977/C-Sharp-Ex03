@@ -33,6 +33,7 @@ namespace Ex03.GarageLogic
             float i_AmountOfPowerSource)
         {
             Engine powerSource = null;
+
             switch(i_VehicleType)
             {
                 case eVehicleType.Car:
@@ -127,6 +128,7 @@ namespace Ex03.GarageLogic
         {
             Vehicle vehicleOfOwner = null;
             float energyPercent = i_Power.CurrentEnginePower;
+
             switch(i_VehicleType)
             {
                 case eVehicleType.Car:

@@ -31,6 +31,7 @@ namespace Ex03.GarageLogic
             foreach(Wheel wheel in r_VehiclesInGarage[i_LicenseNumber].Vehicle.ListOfWheels)
             {
                 float amountToMaxAir = wheel.MaxAirPressure - wheel.CurrentAirPressure;
+
                 wheel.InflationAction(amountToMaxAir);
             }
         }
@@ -38,6 +39,7 @@ namespace Ex03.GarageLogic
         public void IsVehicleCanBeFueled(string i_LicenseNumber)
         {
             FuelEngine typeEngine = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as FuelEngine;
+
             if(typeEngine == null)
             {
                 throw new ArgumentException("Invalid engine type,this vehicle can`t be fueled");
@@ -47,6 +49,7 @@ namespace Ex03.GarageLogic
         public void VehicleRefueling(string i_LicenseNumber, FuelEngine.eFuelType i_FuelType, float i_AmountOfFuleToAdd)
         {
             FuelEngine toRefill = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as FuelEngine;
+
             toRefill.RefuelingAction(i_FuelType, i_AmountOfFuleToAdd);
             r_VehiclesInGarage[i_LicenseNumber].Vehicle.UpdatePercent();
         }
@@ -55,6 +58,7 @@ namespace Ex03.GarageLogic
         {
             ElectricityEngine vehicleToCharge =
                 r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as ElectricityEngine;
+
             vehicleToCharge.ChargingAction(i_MinutesToCharge / 60);
             r_VehiclesInGarage[i_LicenseNumber].Vehicle.UpdatePercent();
         }
@@ -62,6 +66,7 @@ namespace Ex03.GarageLogic
         public void IsVehicleCanBeCharged(string i_LicenseNumber)
         {
             ElectricityEngine typeEngine = r_VehiclesInGarage[i_LicenseNumber].Vehicle.EngineType as ElectricityEngine;
+
             if(typeEngine == null)
             {
                 throw new ArgumentException("Invalid engine type,this vehicle can`t be charged");

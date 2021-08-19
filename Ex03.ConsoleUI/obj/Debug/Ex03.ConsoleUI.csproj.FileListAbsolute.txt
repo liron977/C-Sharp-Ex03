@@ -1,0 +1,9 @@
+C:\C21 Ex03 LironKotev 318598380 ChenPakman 208711978\Ex03.ConsoleUI\bin\Debug\Ex03.ConsoleUI.exe
+C:\C21 Ex03 LironKotev 318598380 ChenPakman 208711978\Ex03.ConsoleUI\bin\Debug\Ex03.ConsoleUI.pdb
+C:\C21 Ex03 LironKotev 318598380 ChenPakman 208711978\Ex03.ConsoleUI\bin\Debug\Ex03.GarageLogic.dll
+C:\C21 Ex03 LironKotev 318598380 ChenPakman 208711978\Ex03.ConsoleUI\bin\Debug\Ex03.GarageLogic.pdb
+C:\C21 Ex03 LironKotev 318598380 ChenPakman 208711978\Ex03.ConsoleUI\obj\Debug\Ex03.ConsoleUI.csprojAssemblyReference.cache
+C:\C21 Ex03 LironKotev 318598380 ChenPakman 208711978\Ex03.ConsoleUI\obj\Debug\Ex03.ConsoleUI.csproj.CoreCompileInputs.cache
+C:\C21 Ex03 LironKotev 318598380 ChenPakman 208711978\Ex03.ConsoleUI\obj\Debug\Ex03.ConsoleUI.csproj.CopyComplete
+C:\C21 Ex03 LironKotev 318598380 ChenPakman 208711978\Ex03.ConsoleUI\obj\Debug\Ex03.ConsoleUI.exe
+C:\C21 Ex03 LironKotev 318598380 ChenPakman 208711978\Ex03.ConsoleUI\obj\Debug\Ex03.ConsoleUI.pdb

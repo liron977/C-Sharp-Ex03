@@ -143,6 +143,7 @@ Please make a choice:
         private static void insertVehicleToGarage(Garage i_Garage)
         {
             bool isVehicleAdded = false;
+
             while(!isVehicleAdded)
             {
                 try
@@ -240,6 +241,7 @@ Please make a choice:
         private static bool isValidOwnerName(string i_UserNameInput)
         {
             bool isValidOwnerName = true;
+
             if(i_UserNameInput.Length >= 2)
             {
                 foreach(char character in i_UserNameInput)
@@ -309,6 +311,7 @@ Please make a choice:
         {
             string vehicleModel = string.Empty;
             bool isValidVehicleModel = false;
+
             while(!isValidVehicleModel)
             {
                 Console.WriteLine("Please enter the model of the vehicle");
@@ -682,9 +685,11 @@ Please make a choice:
             Dictionary<string, Type> i_VehicleDynamicTypes,
             Dictionary<string, object> i_VehicleDynamicObjects)
         {
-            foreach(string currentParam in i_VehicleDynamicTypes.Keys)
+            Type currentParameter;
+
+            foreach (string currentParam in i_VehicleDynamicTypes.Keys)
             {
-                Type currentParameter = i_VehicleDynamicTypes[currentParam];
+                currentParameter = i_VehicleDynamicTypes[currentParam];
                 if(currentParameter == typeof(bool))
                 {
                     getBoolParameter(currentParam, i_VehicleDynamicObjects);
@@ -809,7 +814,7 @@ Please make a choice:
                 inputOfuser = Console.ReadLine();
                 checkStringEmpty(inputOfuser);
 
-                parsingWorked= float.TryParse(inputOfuser, out inputOfUserFloat);
+                parsingWorked = float.TryParse(inputOfuser, out inputOfUserFloat);
                 if(inputOfUserFloat < 0)
                 {
                     Console.WriteLine("Please only enter positive numbers, try again");

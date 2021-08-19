@@ -28,10 +28,8 @@
             {
                 throw new ValueOutOfRangeException(m_CurrentAirPressure, r_MaximumAirPressureSetByManufacturer, 0);
             }
-            else
-            {
-                m_CurrentAirPressure = newAirPressure;
-            }
+
+            m_CurrentAirPressure = newAirPressure;
         }
 
         public string Manufacturer
@@ -74,6 +72,7 @@ The information about the wheel:
 The manufacturer is: {m_Manufacturer}
 The current air pressure is : {m_CurrentAirPressure}
 The maximum air pressure is :{r_MaximumAirPressureSetByManufacturer}");
+
             return wheelsDetails;
         }
     }
