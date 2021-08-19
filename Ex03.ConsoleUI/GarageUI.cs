@@ -680,26 +680,26 @@ Please make a choice:
 
         private static void getDynamicParametersDataFromUser(
             Dictionary<string, Type> i_VehicleDynamicTypes,
-            Dictionary<string, object> o_VehicleDynamicObjects)
+            Dictionary<string, object> i_VehicleDynamicObjects)
         {
             foreach(string currentParam in i_VehicleDynamicTypes.Keys)
             {
                 Type currentParameter = i_VehicleDynamicTypes[currentParam];
                 if(currentParameter == typeof(bool))
                 {
-                    getBoolParameter(currentParam, o_VehicleDynamicObjects);
+                    getBoolParameter(currentParam, i_VehicleDynamicObjects);
                 }
                 else if(currentParameter == typeof(int))
                 {
-                    getIntParameter(currentParam, o_VehicleDynamicObjects);
+                    getIntParameter(currentParam, i_VehicleDynamicObjects);
                 }
                 else if(currentParameter == typeof(float))
                 {
-                    getFloatParameter(currentParam, o_VehicleDynamicObjects);
+                    getFloatParameter(currentParam, i_VehicleDynamicObjects);
                 }
                 else if(currentParameter.IsEnum)
                 {
-                    getEnumParameter(currentParam, o_VehicleDynamicObjects, i_VehicleDynamicTypes[currentParam]);
+                    getEnumParameter(currentParam, i_VehicleDynamicObjects, i_VehicleDynamicTypes[currentParam]);
                 }
             }
         }
@@ -712,10 +712,10 @@ Please make a choice:
         }
 
 
-        private static void getFloatParameter(string i_CurrentParam, Dictionary<string, object> o_DynamicObjects)
+        private static void getFloatParameter(string i_CurrentParam, Dictionary<string, object> i_DynamicObjects)
         {
             Console.WriteLine($@"Please enter {i_CurrentParam} as a positive number");
-            o_DynamicObjects.Add(i_CurrentParam, getFloatInput());
+            i_DynamicObjects.Add(i_CurrentParam, getFloatInput());
         }
 
         private static void printEnumValues(Type i_Enum)
@@ -763,15 +763,15 @@ Please make a choice:
 
         private static void getEnumParameter(
             string i_EnumParam,
-            Dictionary<string, object> o_DynamicParams,
+            Dictionary<string, object> i_DynamicParams,
             Type i_EnumType)
         {
             Console.WriteLine($@"Please enter {i_EnumParam}.");
-            o_DynamicParams.Add(i_EnumParam, getUserEnumInput(i_EnumType));
+            i_DynamicParams.Add(i_EnumParam, getUserEnumInput(i_EnumType));
         }
 
 
-        private static void getBoolParameter(string i_BoolParam, Dictionary<string, object> o_DynamicParams)
+        private static void getBoolParameter(string i_BoolParam, Dictionary<string, object> i_DynamicParams)
         {
             string userInput;
             int userInputAsInt;
@@ -788,7 +788,7 @@ Please make a choice:
                 if(isParsingSucceeded && (userInputAsInt == 1 || userInputAsInt == 2))
                 {
                     boolValue = (userInputAsInt == 1);
-                    o_DynamicParams.Add(i_BoolParam, boolValue);
+                    i_DynamicParams.Add(i_BoolParam, boolValue);
                     isValidBool = true;
                 }
                 else

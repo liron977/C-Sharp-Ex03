@@ -47,9 +47,6 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public static void GetListOfDataMembers(ref List<string> o_DataMemberList)
-        {
-            o_DataMemberList.Add("Current engine power");
-        }
+     
     }
 }

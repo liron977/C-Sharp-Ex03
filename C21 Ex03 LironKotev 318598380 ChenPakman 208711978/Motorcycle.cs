@@ -44,10 +44,10 @@ The engine Capacity: {r_EngineCapacity}
             return motorcycleDetails;
         }
 
-        public static void GetDynamicParameter(Dictionary<string, Type> o_DynamicParams)
+        public static void GetDynamicParameter(Dictionary<string, Type> i_DynamicParams)
         {
-            o_DynamicParams.Add("License type", typeof(eLicenseType));
-            o_DynamicParams.Add("Engine volume", typeof(int));
+            i_DynamicParams.Add("License type", typeof(eLicenseType));
+            i_DynamicParams.Add("Engine volume", typeof(int));
         }
     }
 }

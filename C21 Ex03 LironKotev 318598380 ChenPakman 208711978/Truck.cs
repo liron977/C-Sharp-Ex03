@@ -36,10 +36,10 @@ The max carrying amount is : {r_MaxCarryingAmount}
             return truckDetails;
         }
 
-        public static void GetDynamicParameter(Dictionary<string, Type> o_DynamicParams)
+        public static void GetDynamicParameter(Dictionary<string, Type> i_DynamicParams)
         {
-            o_DynamicParams.Add("Dangerous Materials", typeof(bool));
-            o_DynamicParams.Add("Cargo Volume", typeof(float));
+            i_DynamicParams.Add("Dangerous Materials", typeof(bool));
+            i_DynamicParams.Add("Cargo Volume", typeof(float));
         }
     }
 }
