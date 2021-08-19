@@ -18,7 +18,7 @@ namespace Ex03.GarageLogic
             Electricity
         }
 
-       
+
         public static VehicleDetails CreateVehicleWithFullInformation(
             Vehicle i_Vehicle,
             string i_OwnerName,

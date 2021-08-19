@@ -2,7 +2,7 @@
 
 namespace Ex03.GarageLogic
 {
-   public abstract class Vehicle
+    public abstract class Vehicle
     {
         public enum eNumOfWheels
         {
@@ -10,6 +10,7 @@ namespace Ex03.GarageLogic
             Car = 4,
             Truck = 16
         }
+
         protected string m_ModelName;
         protected readonly string r_LicenseNumber;
         protected float m_EnergyPercentage;
@@ -62,7 +63,6 @@ namespace Ex03.GarageLogic
             {
                 return r_LicenseNumber;
             }
-
         }
 
         public float EnergyPercentage
@@ -100,13 +100,14 @@ namespace Ex03.GarageLogic
                 m_EngineType = value;
             }
         }
+
         public void UpdatePercent()
         {
             m_EnergyPercentage = (m_EngineType.CurrentEnginePower / m_EngineType.MaxEnginePower) * 100;
         }
+
         public override string ToString()
         {
-
             string vehicleDetails = string.Format(
                 $@" 
 The model is: {m_ModelName} 
@@ -117,9 +118,6 @@ The energy percentage amount is: {m_EnergyPercentage} %
 {m_EngineType.ToString()}");
 
             return vehicleDetails;
-
         }
-       
-
     }
 }

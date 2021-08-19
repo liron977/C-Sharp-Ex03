@@ -555,7 +555,7 @@ Please make a choice:
             string licenseNumber;
             string informationOfVehicle;
 
-            while (!isValidLicenseNumber)
+            while(!isValidLicenseNumber)
             {
                 try
                 {
@@ -691,28 +691,26 @@ Please make a choice:
             Dictionary<string, Type> i_VehicleDynamicTypes,
             Dictionary<string, object> o_VehicleDynamicObjects)
         {
-            
-                foreach (string currentParam in i_VehicleDynamicTypes.Keys)
-                {
+            foreach(string currentParam in i_VehicleDynamicTypes.Keys)
+            {
                 Type currentParameter = i_VehicleDynamicTypes[currentParam];
-                if (currentParameter == typeof(bool))
-                    {
-                        getBoolParameter(currentParam, o_VehicleDynamicObjects);
-                    }
-                    else if (currentParameter == typeof(int))
-                    {
-                        getIntParameter(currentParam, o_VehicleDynamicObjects);
-                    }
-                    else if (currentParameter == typeof(float))
-                    {
-                        getFloatParameter(currentParam, o_VehicleDynamicObjects);
-                    }
-                    else if (currentParameter.IsEnum)
-                    {
-                        getEnumParameter(currentParam, o_VehicleDynamicObjects, i_VehicleDynamicTypes[currentParam]);
-                    }
+                if(currentParameter == typeof(bool))
+                {
+                    getBoolParameter(currentParam, o_VehicleDynamicObjects);
                 }
-           
+                else if(currentParameter == typeof(int))
+                {
+                    getIntParameter(currentParam, o_VehicleDynamicObjects);
+                }
+                else if(currentParameter == typeof(float))
+                {
+                    getFloatParameter(currentParam, o_VehicleDynamicObjects);
+                }
+                else if(currentParameter.IsEnum)
+                {
+                    getEnumParameter(currentParam, o_VehicleDynamicObjects, i_VehicleDynamicTypes[currentParam]);
+                }
+            }
         }
 
 
@@ -728,6 +726,7 @@ Please make a choice:
             Console.WriteLine($@"Please enter {i_CurrentParam} as a positive number");
             io_DynamicObjects.Add(i_CurrentParam, getFloatInput());
         }
+
         private static void printEnumValues(Type i_Enum)
         {
             Array valuesOfEnum = Enum.GetValues(i_Enum);
@@ -735,13 +734,13 @@ Please make a choice:
             int currentValueIndex = 1;
 
             Console.WriteLine("Choose an option from the menu below: ");
-            foreach (object enumValue in valuesOfEnum)
+            foreach(object enumValue in valuesOfEnum)
             {
                 Console.WriteLine(string.Format("({0})-{1}", currentValueIndex, enumValue));
                 currentValueIndex++;
             }
-
         }
+
         private static int getUserEnumInput(Type i_Enum)
         {
             Array valuesOfEnum = Enum.GetValues(i_Enum);
@@ -755,7 +754,7 @@ Please make a choice:
             {
                 printEnumValues(i_Enum);
 
-                 indexOfEnum = Console.ReadLine();
+                indexOfEnum = Console.ReadLine();
                 checkStringEmpty(indexOfEnum);
 
                 isParseNumber = int.TryParse(indexOfEnum, out indexOfEnumValue);
@@ -820,25 +819,25 @@ Please make a choice:
                 inputOfuser = Console.ReadLine();
                 checkStringEmpty(inputOfuser);
 
-                 float.TryParse(inputOfuser, out inputOfUserFloat);
-                if (inputOfUserFloat < 0)
+                parsingWorked= float.TryParse(inputOfuser, out inputOfUserFloat);
+                if(inputOfUserFloat < 0)
                 {
                     Console.WriteLine("Please only enter positive numbers, try again");
                     parsingWorked = false;
                 }
 
-                        if (parsingWorked)
-                          {
-                              if (inputOfUserFloat < 0)
-                              {
-                                  Console.WriteLine("Please only enter positive numbers, try again");
-                                  parsingWorked = false;
-                              }
-                          }
-                          else
-                          {
-                              Console.WriteLine("Wrong format, please try again");
-                          }
+                if(parsingWorked)
+                {
+                    if(inputOfUserFloat < 0)
+                    {
+                        Console.WriteLine("Please only enter positive numbers, try again");
+                        parsingWorked = false;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Wrong format, please try again");
+                }
             }
 
             return inputOfUserFloat;

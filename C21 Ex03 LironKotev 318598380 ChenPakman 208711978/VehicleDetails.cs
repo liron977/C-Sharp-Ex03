@@ -3,27 +3,26 @@
 
 namespace Ex03.GarageLogic
 {
-   public class  VehicleDetails
+    public class VehicleDetails
     {
         public enum eVehicleStatus
         {
-            Repair=1,
+            Repair = 1,
             Fixed,
             Paid
         }
+
         private Vehicle m_Vehicle;
         private string m_OwnerName;
         private string m_OwnerPhoneNumber;
         public eVehicleStatus m_VehicleStatus;
 
-        public VehicleDetails(Vehicle i_Vehicle,string i_OwnerName, string i_OwnerPhoneNumber)
+        public VehicleDetails(Vehicle i_Vehicle, string i_OwnerName, string i_OwnerPhoneNumber)
         {
             m_Vehicle = i_Vehicle;
             m_OwnerName = i_OwnerName;
             m_OwnerPhoneNumber = i_OwnerPhoneNumber;
             m_VehicleStatus = eVehicleStatus.Repair;
-
-
         }
 
 
@@ -73,10 +72,10 @@ namespace Ex03.GarageLogic
                 m_VehicleStatus = value;
             }
         }
+
         public override string ToString()
         {
-
-            string vehicleDetails =  String.Format(
+            string vehicleDetails = String.Format(
                 $@"
 The owner's name is: {m_OwnerName} 
 The owner's phone number is: {m_OwnerPhoneNumber} 
@@ -85,9 +84,6 @@ The vehicle information is: {m_Vehicle.ToString()}
 The status of the vehicle: {m_VehicleStatus.ToString()}");
 
             return vehicleDetails;
-
         }
-
-
     }
 }

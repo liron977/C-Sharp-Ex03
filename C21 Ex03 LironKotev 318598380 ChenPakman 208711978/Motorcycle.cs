@@ -8,11 +8,12 @@ namespace Ex03.GarageLogic
     {
         public enum eLicenseType
         {
-            A=1,
+            A = 1,
             B1,
             AA,
             BB
         }
+
         private readonly eLicenseType r_LicenseType;
         private readonly int r_EngineCapacity;
 
@@ -21,7 +22,7 @@ namespace Ex03.GarageLogic
             string i_LicenseNumber,
             float i_EnergyPercentage,
             List<Wheel> i_Wheels,
-             Engine i_EngineType,
+            Engine i_EngineType,
             eLicenseType i_LicenseType,
             int i_EngineCapacity)
             : base(i_MotorcycleModel, i_LicenseNumber, i_EnergyPercentage, i_Wheels, i_EngineType)
@@ -31,21 +32,22 @@ namespace Ex03.GarageLogic
             base.NumOfWheels = eNumOfWheels.Motorcycle;
         }
 
-      
+
         public override string ToString()
         {
-            string motorcycleDetails= string.Format($@"{base.ToString()} 
+            string motorcycleDetails = string.Format(
+                $@"{base.ToString()} 
 The motorcycle information:
 The license type: {r_LicenseType}
 The engine Capacity: {r_EngineCapacity}
 ");
             return motorcycleDetails;
         }
+
         public static void GetDynamicParameter(Dictionary<string, Type> o_DynamicParams)
         {
             o_DynamicParams.Add("License type", typeof(eLicenseType));
             o_DynamicParams.Add("Engine volume", typeof(int));
         }
-
     }
 }
